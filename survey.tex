@@ -3,9 +3,10 @@
 \usepackage[english]{babel}
 \usepackage{hyperref}
 \usepackage{graphicx}
+\usepackage{nicefrac}
 
 %% The title of your survey
-\title{ Survey of mobile network security in trending technologies, focusing on Bluetooth and NFC use cases }
+\title{ Survey of mobile network security in trending technologies, focusing on Bluetooth and NFC }
 
 %% Both authors
 \author{ Johannes Kurz \\
@@ -33,6 +34,26 @@ Write a short abstract about the topics contained in the paper. This is usually 
 %% Introduction
 %% ----------------------------------------------------------------------------
 \section{Introduction}
+
+\begin{table}
+\begin{tabular}{r|l}
+\hline
+\multicolumn{2}{c}{paper structure proposal} \\
+\hline
+1 - 1\nicefrac{1}{2} page & title + abstract + introduction \\
+1 page & mobile networks security basics general \\
+\nicefrac{1}{2} page & nfc general description \\
+\nicefrac{1}{2} page & nfc threat introduction and listing \\
+3 - 5 pages & nfc threats in detail (1 page per threat?) + solution \\
+4 - 6 pages & bluetooth TODO shorty \\
+\nicefrac{1}{2} page & conclusion \\
+1 - 2 pages & references \\
+\hline \hline
+11\nicefrac{1}{2} - 17 pages & total \\
+\hline \hline
+\end{tabular}
+\end{table}
+
 What you should include in the introduction
 \begin{itemize}
  \item Describe the topic (Importance, Significance)
@@ -46,6 +67,15 @@ What you should include in the introduction
 \section{Mobile Networks Security Basics General whatever}
 
 \section{NFC aspects}
+
+\begin{enumerate}
+\item Eavesdropping - threat description and possible solution (\emph{nShield}) \cite{DBLP:conf/mobisys/ZhouX14}
+\item \emph{EnGarde} - rule based signal jamming as a protection mechanism \cite{DBLP:conf/mobisys/GummesonPGTZ13}
+\item Smart Poster Manipulation - Problem Description: \cite{DBLP:conf/IEEEares/Mulliner09}, Solutions: \cite{DBLP:conf/wowmom/WuQKKT12} \cite{DBLP:conf/trustcom/HameedHHK14}
+\item TODO man-in-the-middle?
+\item TODO denial of service? = basically just jamming the signal
+\item TODO relay attacks?
+\end{enumerate}
 
 \section{Bluetooth aspects}
 
