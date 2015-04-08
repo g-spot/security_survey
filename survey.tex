@@ -66,18 +66,49 @@ What you should include in the introduction
 %% You can introduce further sections as well
 \section{Mobile Networks Security Basics General whatever}
 
-\section{NFC aspects}
+\section{Security in Near Field Communication}
 
-\begin{enumerate}
-\item Eavesdropping - threat description and possible solution (\emph{nShield}) \cite{DBLP:conf/mobisys/ZhouX14}
-\item \emph{EnGarde} - rule based signal jamming as a protection mechanism \cite{DBLP:conf/mobisys/GummesonPGTZ13}
-\item Smart Poster Manipulation - Problem Description: \cite{DBLP:conf/IEEEares/Mulliner09}, Solutions: \cite{DBLP:conf/wowmom/WuQKKT12} \cite{DBLP:conf/trustcom/HameedHHK14}
-\item TODO denial of service? = basically just jamming the signal
-\item Relay attacks - Problem description, practical implementations and countermeasures \cite{DBLP:journals/compsec/HanckeMM09} \cite{DBLP:conf/rfidsec/FrancisHMM10} \cite{DBLP:conf/sec/RolandLS12}
-\item TODO man-in-the-middle?
-\end{enumerate}
+\subsection{Terms and general description}
 
-\section{Bluetooth aspects}
+More and more people world wide start using \emph{Near Field Communication} (NFC) for personal purposes. Goal of the technology is the convenient transfer of small amounts of data by just simply wiping compatible devices over each others. As the communication is contactless, bringing sender and receiver to close proximity suffices to establishing a connection. Usually the working distance for NFC connections does not exceed about 10 to 20 centimeters. The technology is based upon \emph{Radio-Frequency Identification} (RFID) - it 	similarly uses electromagnetic radiation for transporting signals over small distances. Therefor a small magnetic field is established with the purpose of bridging the physical space between participating devices.
+
+Basically two types of NFC devices exist. \emph{Active devices} take care of the establishment of the necessary magnetic field. As this is an energy-consuming task, they are usually connected to a power supply. \emph{Passive devices} normally don't possess a built-in power supply. They make use of small amounts of power they are able to harvest from the magnetic field issued by a connected active device. Hence, passive devices are idle when there is no connection present. Typical examples for such devices are so-called NFC tags, e.g. containing additional information about an exhibit in a museum where it is attached to. A user could then easily access this information by hovering its NFC-enabled electronic device, capable of reading the NFC tag, over it.
+
+Mobile devices can choose out of three different communication modes. In \emph{Peer-To-Peer} mode, two active NFC-enabled devices communicate on an equal basis. Usually the task of emitting the necessary magnetic field is carried out in an alternating way by both participants. In \emph{Reader/Writer} mode an active device is reading data from passive NFC tags. Finally, in \emph{Card Emulation} mode a mobile device is acting as NFC tag allowing other (active) devices to read information from it. This mode is mostly used for electronic ticketing or contactless payment applications using mobile phones.
+
+\subsection{Selected security threats}
+ 
+bar bar foo foo einführender text ein paar zeilen was es nicht alles gibt bar bar foo foo bar bar foo foo bar bar foo foo bar bar foo foo 
+
+\subsubsection{Signal jamming}
+
+\emph{EnGarde} - rule based signal jamming as a protection mechanism \cite{DBLP:conf/mobisys/GummesonPGTZ13}
+
+TODO denial of service? = basically just jamming the signal
+
+bar bar foo foo
+
+\subsubsection{Smart Poster Manipulation}
+
+Problem Description: \cite{DBLP:conf/IEEEares/Mulliner09}, Solutions: \cite{DBLP:conf/wowmom/WuQKKT12} \cite{DBLP:conf/trustcom/HameedHHK14}
+
+bar bar foo foo
+
+\subsubsection{Eavesdropping}
+
+threat description and possible solution (\emph{nShield}) \cite{DBLP:conf/mobisys/ZhouX14}
+
+bar bar foo foo
+
+\subsubsection{Relay attacks}
+
+TODO man-in-the-middle? more general than relay attacks?
+
+Problem description, practical implementations and countermeasures \cite{DBLP:journals/compsec/HanckeMM09} \cite{DBLP:conf/rfidsec/FrancisHMM10} \cite{DBLP:conf/sec/RolandLS12}
+
+bar bar foo foo
+
+\section{Security in Bluetooth communications}
 
 %% Conclusion
 %% ----------------------------------------------------------------------------
