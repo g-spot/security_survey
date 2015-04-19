@@ -63,7 +63,8 @@
 *.vrb
 *.xdy
 *.tdo
-./*.pdf
+*.pdf
+!img/*.pdf
 TSWLatexianTemp*.*
 *.DS_Store
 Thumbs.db
