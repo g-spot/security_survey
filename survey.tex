@@ -5,6 +5,7 @@
 \usepackage{graphicx}
 \usepackage{nicefrac}
 \usepackage{caption}
+\usepackage{wrapfig}
 
 %% The title of your survey
 \title{ Survey of mobile network security in trending technologies, focusing on Bluetooth and NFC }
@@ -165,6 +166,20 @@ Problem description, practical implementations and countermeasures \cite{DBLP:jo
 bar bar foo foo
 
 \section{Security in Bluetooth communications}
+\subsection{Terms and general description}
+\begin{wrapfigure}{r}{0.5\textwidth}
+  \begin{center}
+    \includegraphics[width=0.48\textwidth]{img/730px-Bluetooth-Logo.png}
+  \end{center}
+  \caption{Bluetooth logo with the combined initial letters (runes) of King Harald "Bluetooth" Gormsson}
+\end{wrapfigure}
+The technology behind bluetooth was developed in the early 1990s and commercial successful after the millennium. With the integration in the main stream devices and Microsoft Windows (XP SP1 2001) security flaws started to pop up. Similar to NFC bluetooth is a radiation based communication technology for one to seven devices. Bluetooth devices can have master or slave role and with these operation role. The range and used technology on the other hand differ as described later. 
+Bluetooth has a broad variety of use cases from headsets, input devices, gaming consoles, industry networks, cars and even medical equipment like a pacemaker. At the \emph{Chaos Computer Congress 2007} (CCC) there was a talk about "Hacking the Bionic Man" \footnote{\url{http://events.ccc.de/camp/2007/Fahrplan/events/2049.en.html}} including Bluetooth attacks. Therefore not only smartphones cars and our computers are vulnerable to attacks.
+The topic is not new but still relevant. Recent applications are wearables like fitness wristbands or watches. \\
+Bluetooth uses the (ISM) band at 2.4 to 2.485 GHz and is distinguished in three classes and four versions. The first class uses a power of 100mW and has a range of about 100m. The second class uses 2.5mW with a range of 10 meter. The third class uses only 1mW with a range of about 1m.\\
+The four different versions introduced new features and higher data rates. In version 2.0 the \emph{Enhanced Data Rate} (EDR) was introduced. Currently version 4.0 from 2010 has a data rate of 24 Mbit/s (in 3.0 over a colocated 802.11 link). Additionally 4.0 introduced \emph{Bluetooth low energy} (Bluetooth LE, BLE) to be run from a coin cell power source. The latest version 4.2 was released on December 2, 2014 introducing key features for the \emph{Internet of Things} (IoT).\\
+The above list is not nearly exhaustive because with every version different protocols, security standards, power control mechanisms and many other features were added. In the following section the used or exploited technologies will therefore be briefly introduced and discussed.
+
 
 %% Conclusion
 %% ----------------------------------------------------------------------------
