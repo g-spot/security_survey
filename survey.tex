@@ -80,7 +80,7 @@ Mobile devices can choose out of three different communication modes. In \emph{P
 
 \subsection{Smart Poster Spoofing}
 
-Typically, NFC communication between mobile devices and tags (or other devices) uses the \emph{NFC Data Exchange Format (NDEF)}. It is defined by the NFC Forum\footnote{\url{www.nfc-forum.org}}, a standardization organisation in the area of NFC. The NDEF format consists of several record data types, headed by \emph{Text}, \emph{URI} and \emph{Smart Poster} record types.\cite{DBLP:conf/IEEEares/Mulliner09} 
+Typically, NFC communication between mobile devices and tags (or other devices) uses the \emph{NFC Data Exchange Format (NDEF)}. It is defined by the NFC Forum\footnote{\url{www.nfc-forum.org}}, a standardization organisation in the area of NFC. The NDEF format consists of several record data types, headed by \emph{Text}, \emph{URI} and \emph{Smart Poster} record types.\cite{DBLP:conf/IEEEares/Mulliner09}\cite{DBLP:conf/mobisys/GummesonPGTZ13}
 
 Text records simply contain an arbitrary, human-readable text, optionally followed by a language identifier.
 
@@ -102,8 +102,10 @@ In \cite{DBLP:conf/IEEEares/Mulliner09}, a way of tricking users into acknowledg
 
 \subsubsection{Countermeasures against Smart Poster Spoofing}
 
-\cite{DBLP:conf/wowmom/WuQKKT12} presents S-SPAN, a system aiming at securing the use of Smart Poster reads from NFC tags. Basic approach is not to store the actual information in plain text on the NFC tag. The tag rather contains a non-guessable and non-human-readable identifier which is used to locate the Smart Poster contents in a online database. The user of the mobile device has to be logged into the online database when touching the NFC tag. Over secured connection, the database is queried for the identifier and replies with the actuals contents. The contents of the database are administered by the owner of the smart tag. Identifiers are never used twice to prevent accidental usage of old tags. Consequently, Smart Poster can expire at some time. The approach entails better security as actual URIs are always retrieved by a trusted entity. On the other hand, additional latency has to be accepted for querying the database.
+\paragraph{Verifiying data trustworthyness via online backend}
+\cite{DBLP:conf/wowmom/WuQKKT12} presents S-SPAN, a system aiming at securing the use of Smart Poster reads from NFC tags. Basic approach is not to store the actual information in plain text on the NFC tag. The tag rather contains a non-guessable and non-human-readable identifier which is used to locate the Smart Poster contents in an online database. The user of the mobile device has to be logged into the online database when touching the NFC tag. Over secured connection, the database is queried for the identifier and replies with the actuals contents. The contents of the database are administered by the owner of the smart tag. Identifiers are never used twice to prevent accidental reusage of already expired tags. Consequently, Smart Poster can expire at some time. The approach entails better security as actual URIs are always retrieved by a trusted entity. On the other hand, additional latency has to be accepted for querying the database.
 
+\paragraph{Verifying data trustworthyness via local middleware}
 \cite{DBLP:conf/trustcom/HameedHHK14} refers to the latency problem of S-SPAN and presents a "Lightweight Security Middleware to Detect Malicious Content in NFC Tags or Smart Posters". The proposed middleware is run between the NFC controller and the application layer of the device and takes care of all Smart Poster tag reads. In contrast to S-SPAN, data (Text and URI) is directly stored on the tag. The middleware, depicted in figure \ref{img_lightweight_security_middleware}, performs a series of checks against the delivered URI. First, a \emph{white list} is queried against the URI. If the given URI can be found, the Smart Poster is directly forwarded to the application layer. If not, a \emph{black list} approach is performed. If the URI is blacklisted, the middleware prompts the user to decide on whether to continue reading the Smart Poster. If the URI is not blacklisted, a final validation attempt is made by querying \emph{Crowd-sourced Internet Website Reputation Ratings}. When the query results in a predefined minimum reputation score, the Smart Poster again is forwarded. Performance observations show, that white- and blacklist hits cause very low latency, while reputation querying takes a maximum of 1 second in the given test environment.
 
 \begin{figure}
@@ -114,9 +116,22 @@ In \cite{DBLP:conf/IEEEares/Mulliner09}, a way of tricking users into acknowledg
 \end{center}
 \end{figure}
 
+\paragraph{Preventing untrusted data from being received by signal jamming}
+While the previously presented countermeasures use device-internal verification of received data, \cite{DBLP:conf/mobisys/GummesonPGTZ13} proposes an external approach by attaching a credit card-sized module called \emph{EnGarde} at the back of an NFC device, similar to \emph{nShield}\cite{DBLP:conf/mobisys/ZhouX14}. The main purpose of \emph{EnGarde} is to detect malicious NFC data before it is fully perceived by the device and immediately start jamming the signal in order to letting the whole transmission fail. 
+
+The detection of unwanted or manipulated messages uses a programmable, rule-based approach. As a result, messages of specific (1) \emph{protocols}, (2) \emph{tag identifiers} or even (3) \emph{message content} can be blocked.
+
+(1) The identification of the present protocol starts with an examination of the first pulse of the AM carrier of a message. After gaining a first grouping by this step, a lightweight algorithm is deployed to exactly identify the used protocol by having a quick look at the first bytes of the sniffed transmission. Practically, protocol prohibition can be used for e.g. avoiding all communications over the ISO-14443-A protocol, which can be used to read out a devices NFC identifier.
+
+(2) Tag identifiers can also be sniffed at an early phase of the connection, the so-called anti-collision phase. Consequently, blacklisted tags or even whole families of tags (e.g. from a certain manufacturer) can be blocked.
+
+(3) Using a software graph structure, connections can even be blocked by specific contents of a message, which occurs to be the finest granularity of blocking rules. Considering the above-discussed NDEF data exchange format, messages containing particular blacklisted URI records (e.g. all URIs starting with ``http://www.evil.com") can be blocked.
+
+The concrete implementation of signal jamming is based on the type of NFC connection. For tag-to-reader communications \emph{reflective jamming} is used, which basically generates a subcarrier of same frequency of the NFC subcarrier (i.e. 847.5kHz) using load-based modulation of the tuned coil. In contrast, for interrupting incoming active NFC communications, so-called \emph{pulse jamming} is introduced, which unfolds its destructive power by generation of targeted pulses. Both jamming techniques work at very low power consumptions.
+
 \subsection{Eavesdropping Near Field Communication}
 
-Eavesdropping, ``to listen secretly to the private conversation of others"\footnote{\url{http://www.thefreedictionary.com/eavesdrop}}, concerns almost any forms of transmission of digital data. Obviously, wireless connections are particularly vulnerable to being intercepted by third persons, and so NFC connections are.
+Eavesdropping, ``to listen secretly to the private conversation of others"\footnote{\url{http://www.thefreedictionary.com/eavesdrop}}, concerns almost any forms of transmission of digital data. Obviously, wireless connections are particularly vulnerable to being intercepted by third persons, and so NFC connections are. \cite{DBLP:conf/icitst/EvestiSS13}
 
 Despite the general opinion that the operating distance of NFC is too short for the possibility of eavesdropping attacks, recent research suggests to keep it definitely in mind. Although the working distance does usually not exceed 10 to 20 centimeters, many devices emit NFC signals at much higher strength as necessary. In \cite{DBLP:conf/mobisys/ZhouX14} it is proved that in some cases transmissions can be intercepted within up to a range of 240 cm. This is at least more than an order of magnitude in comparison to the above-mentioned intended operating distinace of few centimeters, which probably suffices for performing serious attacks.
 
@@ -132,21 +147,21 @@ The authors of \cite{DBLP:conf/mobisys/ZhouX14} propose a hardware-level solutio
 
 The second important component is the algorithm used for the adaptive RF field attenuation. An embedded TX control circuit ensures strictly timed data transmissions in a synchronized manner based on the data rate of the used modulation scheme. After extracting the raw transmission data by removing the AM carrier and demodulating the baseband signal, the optimal transmission power of the initiator is computed. Therefor the successful reception of previous messages is derived by analyzing logical relations between consecutive messages. Binary search is used to accelerate this step.	If no RF field is present, the component falls asleep to conserve power.
 
-Figure \ref{img_nshield} shows a prototype compilation of the necessary hardware components, attached to a Google Nexus 7 tablet. While the size of the circuit board is 5.5 cm by 5.3 cm, the antenna measures 9.6 by 9.6 cm. The components could be shrinked further without loss of functionality to fit smaller mobile devices. Component cost is specified with under \$20.
+%Figure \ref{img_nshield} shows a prototype compilation of the necessary hardware components, attached to a Google Nexus 7 tablet. While the size of the circuit board is 5.5 cm by 5.3 cm, the antenna measures 9.6 by 9.6 cm. The components could be shrinked further without loss of functionality to fit smaller mobile devices. Component cost is specified with under \$20.
 
-\begin{figure}
-\begin{center}
-\includegraphics{img/nshield}
-\caption{\footnotesize{Antenna and circuit of \emph{nShield} mounted on the back of a Google Nexus 7 tablet\cite{DBLP:conf/mobisys/ZhouX14}}}
-\label{img_nshield}
-\end{center}
-\end{figure}
+%\begin{figure}
+%\begin{center}
+%\includegraphics{img/nshield}
+%\caption{\footnotesize{Antenna and circuit of \emph{nShield} mounted on the back of a Google Nexus 7 tablet\cite{DBLP:conf/mobisys/ZhouX14}}}
+%\label{img_nshield}
+%\end{center}
+%\end{figure}
 
 Experimentation results with the prototype show a mean delay due to the attenuation process of 2.1 seconds, measured from the very first probe transmission to the point in time the optimal attenuation level is determined. It is also shown that, using simple aluminium foil to reduce the strength of the RF field of an initiator, the maximum passive eavesdropping distance can be reduced to about 80 centimeters without affecting the reliability of connection. However, a concrete comparison of eavesdropping distances without/with \emph{nShield} attached to a NFC device is somehow missing.
 
 \subsubsection{Countermeasure: Signal jamming}
 
-Hardware level: \textbf{Signal jamming:} \emph{EnGarde} - rule based signal jamming as a protection mechanism \cite{DBLP:conf/mobisys/GummesonPGTZ13}
+
 
 TODO denial of service? = basically just jamming the signal - from the attackers point of view
 
