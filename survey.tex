@@ -187,21 +187,36 @@ bar bar foo foo
     \includegraphics[width=0.48\textwidth]{img/730px-Bluetooth-Logo.png}
   \end{center}
   \caption{Bluetooth logo with the combined initial letters (runes) of King Harald "Bluetooth" Gormsson}
+  \label{img_bt_logo}
 \end{wrapfigure}
-The technology behind bluetooth was developed in the early 1990s and commercial successful after the millennium. With the integration in the main stream devices and Microsoft Windows (XP SP1 2001) security flaws started to pop up. Similar to NFC bluetooth is a radiation based communication technology for one to seven devices. Bluetooth devices can have master or slave role and with these operation role. The range and used technology on the other hand differ as described later. 
+The technology behind Bluetooth (BT) was developed in the early 1990s and commercial successful after the millennium. With the integration in the main stream devices and Microsoft Windows (XP SP1 2001) security flaws started to pop up. Similar to NFC bluetooth is a radiation based communication technology for one to seven devices. Bluetooth devices can have master or slave role and with these operation role. The range and used technology on the other hand differ as described later. 
 Bluetooth has a broad variety of use cases from headsets, input devices, gaming consoles, industry networks, cars and even medical equipment like a pacemaker. At the \emph{Chaos Computer Congress 2007} (CCC) there was a talk about "Hacking the Bionic Man" \footnote{\url{http://events.ccc.de/camp/2007/Fahrplan/events/2049.en.html}} including Bluetooth attacks. Therefore not only smartphones cars and our computers are vulnerable to attacks.
-The topic is not new but still relevant. Recent applications are wearables like fitness wristbands or watches. \\
+The topic is not new but still relevant. Recent applications are wearables like fitness wristbands or watches. With everyone owning a BT enabled notebook, smartphone, car or already a smartwatch this targets most people. \\
 Bluetooth uses the (ISM) band at 2.4 to 2.485 GHz and is distinguished in three classes and four versions. The first class uses a power of 100mW and has a range of about 100m. The second class uses 2.5mW with a range of 10 meter. The third class uses only 1mW with a range of about 1m.\\
 The four different versions introduced new features and higher data rates. In version 2.0 the \emph{Enhanced Data Rate} (EDR) was introduced. Currently version 4.0 from 2010 has a data rate of 24 Mbit/s (in 3.0 over a colocated 802.11 link). Additionally 4.0 introduced \emph{Bluetooth low energy} (Bluetooth LE, BLE) to be run from a coin cell power source. The latest version 4.2 was released on December 2, 2014 introducing key features for the \emph{Internet of Things} (IoT).\\
 The above list is not nearly exhaustive because with every version different protocols, security standards, power control mechanisms and many other features were added. In the following section the used or exploited technologies will therefore be briefly introduced and discussed.
 
-\subsection{Attacks}
+\subsection{Bluetooth Security}
+In this section the security concepts will be discussed including modes, key management, authentication encryption and trust levels. Furthermore executable attacks and risk analysis in the case of a Automotive Environment (A-ENV) will state the realized or realizable possibilities. Last part will be the current state in the expanding applications of Low Energy Bluetooth technology. Therefore the referenced papers were classified in three categories: 
+\begin{itemize}
+	\item basic technology risks
+	\item executable attacks and testing in case of A-ENV
+	\item LE bluetooth security concerns
+\end{itemize}
 
-\subsubsection{attacks till Bluetooth 2.1}
 
-\subsubsection{Latest attacks}
+\subsubsection{General concept}
+\subsubsection{BT vulnerabilities}
 
-\subsection{Countermeasures}
+\begin{figure}[h]
+\begin{center}
+\includegraphics[scale=0.4]{img/bt_attack_logos.png}
+\caption{some applications of BT vulnerabilities \cite{DBLP:journals/corr/abs-1206-1482}}
+\label{img_bt_attack_logos}
+\end{center}
+\end{figure}
+
+\subsubsection{Low Energy (LE) vulnerabilities}
 
 \subsection{Further development}
 no fee for BT 4.0, Spreading, Usage standard keys
