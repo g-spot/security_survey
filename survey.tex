@@ -210,9 +210,23 @@ In this section the security concepts will be discussed including modes, key man
 
 \textbf{Bluetooth Pairing} in versions below 2.1 a pin was used to authenticate between devices and then generate a link key and a encryption key for data transfer. The biggest problem with that was that when having the pin (or cracking) one can calculate the link key of the previous session and read all captured data. With version 2.1 the SIG (Special Interest Group) introduced the \emph{Secure Simple Pairing} (SSP) wich uses public-private key pairs to overcome the generation of the link key by pin guessing \cite{DBLP:conf/apnoms/FanSL11}. SSP has four stages described in \cite{DBLP:conf/apnoms/FanSL11},  \cite{DBLP:journals/ijnsec/YehPWH12} and in detail in \cite{DBLP:journals/ijnsec/Lackner13} :
 
-% TODO sum up phases
+\begin{itemize}
+	\item \textbf{Key Exchange:} Generation of Elliptic Curve Diffie-Hellman Key (DHKey) pairs and exchange of public keys.
+	\item \textbf{Authentication Stage 1:} exchange of parameters using one of four protocols (Numeric Comparison-, Out of Band,- Passkey Entry Protocol and Just Works only stated in  \cite{DBLP:journals/ijnsec/Lackner13})
+	\item  \textbf{Authentication Stage 2:} sending messages to check for complete parameters and values
+	\item  \textbf{Link Key Generation:} actual Link Key (LK) computation based on a function using previous exchanged parameters
+\end{itemize}
 
-\textbf{Possible Attacks}
+There is a discovery phase and there may be addition or less steps depending on the Encryption mode which was chosen. Mode 0 provides no encryption (early BT versions). Mode 1 provides direct communication encryption but no broadcast encryption. Mode 3 encrypts all traffic \cite{DBLP:journals/ijnsec/Lackner13}. 
+\\
+\\
+\textbf{Possible Attacks}\\
+In \cite{DBLP:journals/ijnsec/YehPWH12} it is pointed out that the Elliptic Curve Diffie-Hellman (ECDH) protocol has a flaw because the public keys of both endpoints are not authenticated which makes a \emph{man-in-the-middle attack} possible. The problem seems to be that that the PIN code is transferred and only answered as "Yes" or "No" confirmation. A proposed solution is to let both endpoints input the PIN and use this PIN to XOR it with the public key before exchange.\\
+On the other hand in \cite{DBLP:conf/apnoms/FanSL11} \emph{Off-line guessing attack} and \emph{On-line guessing attack} are described. Here capturing the transmission (Off-line) and reconstructing the password is possible. The other attack is just a brute force guessing attack. In the protocol it is defined that on a failure the time between attempts is increased exponentially. Because the password is often about 20 bits the full password can be learned in 40 tries. The stated solution is:
+\begin{quote}
+"We found that the most effective way is to add 'randomness' into the authentication procedure, and adding a random nonce is a common solution."\cite{DBLP:conf/apnoms/FanSL11}
+\end{quote}
+They propose to take advantage of the long DHKey and merge the key with the PIN and sending additionally the random nonce through a encryption function.
 
 \subsubsection{BT vulnerabilities}
 
