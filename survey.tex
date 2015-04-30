@@ -198,15 +198,15 @@ The four different versions introduced new features and higher data rates. In ve
 The above list is not nearly exhaustive because with every version different protocols, security standards, power control mechanisms and many other features were added. In the following section the used or exploited technologies will therefore be briefly introduced and discussed.
 
 \subsection{Bluetooth Security}
-In this section the security concepts will be discussed including modes, key management, authentication, encryption and trust levels. Furthermore executable attacks and risk analysis in the case of a Automotive Environment (A-ENV) will state the realized or realizable possibilities. Last part will be the current state in the expanding applications of Low Energy Bluetooth technology. Therefore the referenced papers were classified in three categories: 
+In this section the security concepts will be discussed including modes, key management, authentication, encryption and trust levels. Furthermore executable attacks and risk analysis in the case of a Automotive Environment (A-ENV) will state the realized or realizable possibilities. Last part will be the current state in the expanding applications of Low Energy Bluetooth (LE) technology. Therefore the referenced papers were classified in three categories: 
 \begin{itemize}
-	\item Basic technology risks
+	\item Basic technology and risks
 	\item Executable attacks and risks in case of A-ENV
 	\item LE Bluetooth security concerns
 \end{itemize}
 
 
-\subsubsection{General concept}
+\subsubsection{Basic technology and risks}
 %TODO: \cite{DBLP:journals/ijnsec/YehPWH12} \cite{DBLP:journals/ijnsec/Lackner13}  \cite{DBLP:conf/apnoms/FanSL11}
 
 \textbf{Bluetooth Pairing} in versions below 2.1 a pin was used to authenticate between devices and then generate a link key and a encryption key for data transfer. The biggest problem with that was that when having the pin (or cracking) one can calculate the link key of the previous session and read all captured data. With version 2.1 the SIG (Special Interest Group) introduced the \emph{Secure Simple Pairing} (SSP) wich uses public-private key pairs to overcome the generation of the link key by pin guessing \cite{DBLP:conf/apnoms/FanSL11}. SSP has four stages described in \cite{DBLP:conf/apnoms/FanSL11},  \cite{DBLP:journals/ijnsec/YehPWH12} and in detail in \cite{DBLP:journals/ijnsec/Lackner13} :
@@ -218,7 +218,7 @@ In this section the security concepts will be discussed including modes, key man
 	\item  \textbf{Link Key Generation:} actual Link Key (LK) computation based on a function using previous exchanged parameters
 \end{itemize}
 
-There is a discovery phase and there may be addition or less steps depending on the Encryption mode which was chosen. Mode 1 provides no encryption (early BT versions). Mode 2 provides direct communication encryption but no broadcast encryption. Mode 3 encrypts all traffic \cite{DBLP:journals/ijnsec/Lackner13}. 
+There is a discovery phase and there may be addition or less steps depending on the Encryption mode which was chosen. Mode 1 provides no encryption (early BT versions). Mode 2 provides direct communication encryption but no broadcast encryption. Mode 3 encrypts all traffic. Additionally Bluetooth allows \emph{trusted levels} (two) and \emph{service security levels} \cite{DBLP:journals/ijnsec/Lackner13}. These regulate how and who can access services of other devices.
 \\
 \\
 \textbf{Possible Attacks}\\
@@ -227,19 +227,45 @@ On the other hand in \cite{DBLP:conf/apnoms/FanSL11} \emph{Off-line guessing att
 \begin{quote}
 "We found that the most effective way is to add 'randomness' into the authentication procedure, and adding a random nonce is a common solution."\cite{DBLP:conf/apnoms/FanSL11}
 \end{quote}
-They propose to take advantage of the long DHKey and merge the key with the PIN and sending additionally the random nonce through a encryption function.
+They propose to take advantage of the long DHKey and merge the key with the PIN and sending additionally the random nonce through a encryption function.\\
+In \cite{DBLP:journals/ijnsec/Lackner13} the analysis is more a listing starting with older versions and problems with all versions of BT. Followed to the listing is a classification of the attacks which seems to be pretty good summed up. They name following attacks: Surveillance, Range extension, Obfuscation, Fuzzer, Sniffing, Denial of Service (DOS), Malware, Unauthorized direct data access (UDDA) and the Man in the middle (MITM). Because the paper handles WLAN and WiMAX too there is no in depth testing or proposals for security enhancements. In the next section we will see some applications of the attacks stated in this section.
 
-\subsubsection{BT vulnerabilities}
+
+\subsubsection{Executable attacks and risk analysis in case of A-ENV}
 
 \begin{figure}[h]
 \begin{center}
 \includegraphics[scale=0.4]{img/bt_attack_logos.png}
-\caption{some applications of BT vulnerabilities \cite{DBLP:journals/corr/abs-1206-1482}}
+\caption{Some applications of BT vulnerabilities \cite{DBLP:journals/corr/abs-1206-1482}}
 \label{img_bt_attack_logos}
 \end{center}
 \end{figure}
+The application of vulnerabilities was tested in \cite{DBLP:journals/corr/abs-1206-1482} and summed up:
+\begin{quote}
+"In order to find out the major vulnerabilities in modern Bluetooth-enabled mobile devices several attacks habe performed successfully such as Surveillance, Obfuscation, Sniffing, Unauthorized Direct Data Access (UDDA) and Man-in-the-Middle Attack (MITM)." \cite{DBLP:journals/corr/abs-1206-1482}
+\end{quote}
+You can see some of the logos of attacks in \ref{img_bt_attack_logos}. The background was already explained in the last sections. Now we have a look at how some of these attacks are carried out in \cite{DBLP:journals/corr/abs-1206-1482}. The environment is a computer with BT and some linux OS like Backtrack\footnote{\url{http://www.backtrack-linux.org}} (now called Kali Linux). The author chose some older test devices (mobile phones and headsets). He uses \emph{hci-tools} found in the  \emph{BlueZ} package to determine information about the build-in device and control encryption or authentication. For connection to the test devices a RFCOMM connection is used with the command \emph{rfcomm}. Using the tool \emph{BT-Audit} he shows how to retrieve information needed to perform an attack. This threat is \emph{Surveillance} mentioned in the last section. Also he carried out the trick of obfuscation in changing the name, class and address of the adapter using \emph{HCIconfig} and \emph{SpoofTooth}. So far everything was successful. Trying a \emph{Fuzzer} attack failed:
+\begin{quote}
+"Despite I have found phones with older version of Bluetooth, buzzer attacks are completely deprecated because the exploited vulnerabilities were fixed. \emph{Bluetooth Stack Smasher} (BSS) and \emph{blueSmack} have become completely useless." \cite{DBLP:journals/corr/abs-1206-1482}
+\end{quote}
+Like \emph{blueSmack} DoS attacks are not working currently. \emph{Sniffing} was done with \emph{hcidump} command and worked.\\
+A very interesting application is UDDA. With \emph{Bluebugger} and \emph{BlueSnarfer} he could carry out a partial attack. The reason why it does not work fully is because the target has to accept the connection. This attack is interesting because with \emph{bluesnarfer} it is possible to get the contact list (an example can be seen in figure \ref{img_bt_attack_bluesnarfer} with filter parameter and device MAC-address), messages and even dial numbers.
+\begin{figure}[h]
+\begin{center}
+\includegraphics[scale=0.6]{img/bluesnarfer.png}
+\caption{Getting number of contact Asif  \cite{DBLP:journals/corr/abs-1206-1482}}
+\label{img_bt_attack_bluesnarfer}
+\end{center}
+\end{figure}
+The last points of his testing is a MITM attack to capture or inject audio and password guessing (see previous section). The audio capturing was successful and the guess attack only needed some fixed k hash computations. He also stated that the active attack is even easier sing a already existing automated pairing feature of most devices (random 6bit password in 10 attempts).\\
+The conclusion is that for older devices these attacks work but he recognized that the tools were not updated recently. This could be a indicator of more fixed vulnerabilities.\\
+\\
+Now we take a look at one specific topic namely Automotive Environments (A-ENV). In \cite{DBLP:conf/automotiveSS/JakobKSGMSF12} a approach to generate test cases for risk-based testing in A-ENV is planned and demonstrated. 
 
-TODO: \cite{DBLP:journals/esl/DardanelliMTZSKH13} \cite{DBLP:conf/automotiveSS/JakobKSGMSF12}
+Another approach is described in \cite{DBLP:journals/esl/DardanelliMTZSKH13}:
+\begin{quote}
+"In this letter, a hierarchically distributed control system architecture wich integrates a smartphone"
+\end{quote}
 
 \subsubsection{Low Energy (LE) vulnerabilities}
 TODO: \cite{DBLP:conf/woot/Ryan13} \cite{DBLP:conf/greencom/XuZLMLCSTY13}
