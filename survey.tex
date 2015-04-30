@@ -197,7 +197,7 @@ The four different versions introduced new features and higher data rates. In ve
 The above list is not nearly exhaustive because with every version different protocols, security standards, power control mechanisms and many other features were added. In the following section the used or exploited technologies will therefore be briefly introduced and discussed.
 
 \subsection{Bluetooth Security}
-In this section the security concepts will be discussed including modes, key management, authentication encryption and trust levels. Furthermore executable attacks and risk analysis in the case of a Automotive Environment (A-ENV) will state the realized or realizable possibilities. Last part will be the current state in the expanding applications of Low Energy Bluetooth technology. Therefore the referenced papers were classified in three categories: 
+In this section the security concepts will be discussed including modes, key management, authentication, encryption and trust levels. Furthermore executable attacks and risk analysis in the case of a Automotive Environment (A-ENV) will state the realized or realizable possibilities. Last part will be the current state in the expanding applications of Low Energy Bluetooth technology. Therefore the referenced papers were classified in three categories: 
 \begin{itemize}
 	\item basic technology risks
 	\item executable attacks and testing in case of A-ENV
@@ -206,6 +206,14 @@ In this section the security concepts will be discussed including modes, key man
 
 
 \subsubsection{General concept}
+%TODO: \cite{DBLP:journals/ijnsec/YehPWH12} \cite{DBLP:journals/ijnsec/Lackner13}  \cite{DBLP:conf/apnoms/FanSL11}
+
+\textbf{Bluetooth Pairing} in versions below 2.1 a pin was used to authenticate between devices and then generate a link key and a encryption key for data transfer. The biggest problem with that was that when having the pin (or cracking) one can calculate the link key of the previous session and read all captured data. With version 2.1 the SIG (Special Interest Group) introduced the \emph{Secure Simple Pairing} (SSP) wich uses public-private key pairs to overcome the generation of the link key by pin guessing \cite{DBLP:conf/apnoms/FanSL11}. SSP has four stages described in \cite{DBLP:conf/apnoms/FanSL11},  \cite{DBLP:journals/ijnsec/YehPWH12} and in detail in \cite{DBLP:journals/ijnsec/Lackner13} :
+
+% TODO sum up phases
+
+\textbf{Possible Attacks}
+
 \subsubsection{BT vulnerabilities}
 
 \begin{figure}[h]
@@ -216,7 +224,10 @@ In this section the security concepts will be discussed including modes, key man
 \end{center}
 \end{figure}
 
+TODO: \cite{DBLP:journals/esl/DardanelliMTZSKH13} \cite{DBLP:conf/automotiveSS/JakobKSGMSF12}
+
 \subsubsection{Low Energy (LE) vulnerabilities}
+TODO: \cite{DBLP:conf/woot/Ryan13} \cite{DBLP:conf/greencom/XuZLMLCSTY13}
 
 \subsection{Further development}
 no fee for BT 4.0, Spreading, Usage standard keys
