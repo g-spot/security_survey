@@ -266,10 +266,10 @@ The weighted security score resulting can be calculate as seen in figure \ref{se
 
 \begin{figure}[h]
 \begin{center}
-\begin{math}
-consequence = \sum_{i=1}^{N} (likelihood_{LeadsTo_i} * likelihood_{impacts_i} * consequence_i)
-\end{math}
-\caption{Calculation for consequence with\\ N...number of all possible paths \cite{DBLP:conf/automotiveSS/JakobKSGMSF12} }
+	\begin{math}
+	consequence = \sum_{i=1}^{N} (likelihood_{LeadsTo_i} * likelihood_{impacts_i} * consequence_i)
+	\end{math}
+	\caption{consequence with N...number of all possible paths \cite{DBLP:conf/automotiveSS/JakobKSGMSF12} }
 \label{consequences_formula}
 \end{center}
 \end{figure}
@@ -288,7 +288,13 @@ I think the approach can be very useful if the complexity of application does no
 
 Another approach is described in \cite{DBLP:journals/esl/DardanelliMTZSKH13} where a whole architecture is designed to lower the threat. The group points out that a connection from a car to a smartphone connects the car over Bluetooth to the internet. This increases the possible points for attacks.\\
 % TODO: Architecture, security issues, experiment
-
+\begin{figure}[h]
+\begin{center}
+	\includegraphics[scale=0.6]{img/security_layer_bt.png}
+\caption{The layers proposed in gray with trusted domains   \cite{DBLP:journals/esl/DardanelliMTZSKH13}}
+\label{img_bt_attack_bluesnarfer}
+\end{center}
+\end{figure}
 
 
 \subsubsection{Low Energy (LE) vulnerabilities}
