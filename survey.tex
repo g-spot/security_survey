@@ -260,12 +260,36 @@ A very interesting application is UDDA. With \emph{Bluebugger} and \emph{BlueSna
 The last points of his testing is a MITM attack to capture or inject audio and password guessing (see previous section). The audio capturing was successful and the guess attack only needed some fixed k hash computations. He also stated that the active attack is even easier sing a already existing automated pairing feature of most devices (random 6bit password in 10 attempts).\\
 The conclusion is that for older devices these attacks work but he recognized that the tools were not updated recently. This could be a indicator of more fixed vulnerabilities.\\
 \\
-Now we take a look at one specific topic namely Automotive Environments (A-ENV). In \cite{DBLP:conf/automotiveSS/JakobKSGMSF12} a approach to generate test cases for risk-based testing in A-ENV is planned and demonstrated. 
+Now we take a look at one specific topic namely Automotive Environments (A-ENV). In \cite{DBLP:conf/automotiveSS/JakobKSGMSF12} a approach to generate test cases for risk-based testing in A-ENV is planned and demonstrated. They use the project DIAMONDS\footnote{\url{http://www.itea2-diamonds.org}} where a risk oriented \emph{model-based testing} (MBT) concept was defined including A-ENV. Defining test cases and using fuzzing the final set is generated. The focus is on infotainment systems with support for instance services like hands-free calling or navigation over Bluetooth. Other bus systems in the car may also be vulnerable through this corridor leading to possibilities in the worst case of controlling the breaks over Bluetooth. \\
+The system under test (SUT) can be used to reduce the overhead on test instances of the buzzer because many input combinations are rejected. Moreover it is stated that it is not guaranteed that a vulnerability can cause immediate reaction. As example it can be the case that battery or memory usage increase over time. They used a test setup and a framework (do.ATOMS) to try the approach. With a diagram for risk analysis containing likelihood-values for edges it is possible to build a sum for consequences\ref{consequences_formula}. In the diagram the start point is a threat and the endpoint is the threat-scenario. The paths correspond to different vulnerabilities which could lead to the threat scenario. 
+The weighted security score resulting can be calculate as seen in figure \ref{security_formula}. The result is a relevant threat.
 
-Another approach is described in \cite{DBLP:journals/esl/DardanelliMTZSKH13}:
-\begin{quote}
-"In this letter, a hierarchically distributed control system architecture wich integrates a smartphone"
-\end{quote}
+\begin{figure}[h]
+\begin{center}
+\begin{math}
+consequence = \sum_{i=1}^{N} (likelihood_{LeadsTo_i} * likelihood_{impacts_i} * consequence_i)
+\end{math}
+\caption{Calculation for consequence with\\ N...number of all possible paths \cite{DBLP:conf/automotiveSS/JakobKSGMSF12} }
+\label{consequences_formula}
+\end{center}
+\end{figure}
+
+\begin{figure}[h]
+\begin{center}
+\begin{math}
+	security score = \frac{(likelihood * consequence)^2}{vulnerability}
+\end{math}
+\caption{Score formula \cite{DBLP:conf/automotiveSS/JakobKSGMSF12}}
+\label{security_formula}
+\end{center}
+\end{figure}
+Further development will be to show the efficiency, robustness and usability.
+I think the approach can be very useful if the complexity of application does not destroy the usability in the future.\\
+
+Another approach is described in \cite{DBLP:journals/esl/DardanelliMTZSKH13} where a whole architecture is designed to lower the threat. The group points out that a connection from a car to a smartphone connects the car over Bluetooth to the internet. This increases the possible points for attacks.\\
+% TODO: Architecture, security issues, experiment
+
+
 
 \subsubsection{Low Energy (LE) vulnerabilities}
 TODO: \cite{DBLP:conf/woot/Ryan13} \cite{DBLP:conf/greencom/XuZLMLCSTY13}
