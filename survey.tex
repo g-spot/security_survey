@@ -287,7 +287,7 @@ Further development will be to show the efficiency, robustness and usability.
 I think the approach can be very useful if the complexity of application does not destroy the usability in the future.\\
 
 Another approach is described in \cite{DBLP:journals/esl/DardanelliMTZSKH13} where a whole architecture is designed to lower the threat. The group points out that a connection from a car to a smartphone connects the car over Bluetooth to the internet. This increases the possible points for attacks.\\
-% TODO: Architecture, security issues, experiment
+
 \begin{figure}[h]
 \begin{center}
 	\includegraphics[scale=0.6]{img/security_layer_bt.png}
@@ -295,7 +295,7 @@ Another approach is described in \cite{DBLP:journals/esl/DardanelliMTZSKH13} whe
 \label{img_bt_attack_bluesnarfer}
 \end{center}
 \end{figure}
-
+To realize this concept keys are generated with nonce and exchanged. After that a long-term secret key is computed using a key-function. This steps are repeated for each authentication process. In the experiment the bottleneck was the execution time on the gateway ECU (see figure \ref{img_bt_attack_bluesnarfer}) resulting from a low CPU power. The security layer lowered the Bluetooth frequency because of the calculation delays and the increased size of the messages (+40\%). The lower frequency in some degree compensates the time loss. The overall (closed-loop) performance is not affected. In future work they propose to use lightweight cryptographic algorithms for lower energy ECUs and requirements for secure A-ENV system engineering.
 
 \subsubsection{Low Energy (LE) vulnerabilities}
 TODO: \cite{DBLP:conf/woot/Ryan13} \cite{DBLP:conf/greencom/XuZLMLCSTY13}
