@@ -298,13 +298,37 @@ Another approach is described in \cite{DBLP:journals/esl/DardanelliMTZSKH13} whe
 To realize this concept keys are generated with nonce and exchanged. After that a long-term secret key is computed using a key-function. This steps are repeated for each authentication process. In the experiment the bottleneck was the execution time on the gateway ECU (see figure \ref{img_bt_attack_bluesnarfer}) resulting from a low CPU power. The security layer lowered the Bluetooth frequency because of the calculation delays and the increased size of the messages (+40\%). The lower frequency in some degree compensates the time loss. The overall (closed-loop) performance is not affected. In future work they propose to use lightweight cryptographic algorithms for lower energy ECUs and requirements for secure A-ENV system engineering.
 
 \subsubsection{Low Energy (LE) vulnerabilities}
-TODO: \cite{DBLP:conf/woot/Ryan13} \cite{DBLP:conf/greencom/XuZLMLCSTY13}
+The BT 4.0 LE release opened the opportunities for long lasting health care equipment and the internet of things (think of wearables). The paper \cite{DBLP:conf/greencom/XuZLMLCSTY13} examines vulnerabilities in the authentication and pairing process. To get a feeling for the spreading of BT they stated the estimation of 20 billion shipped BT enabled devices by 2017. The basic vulnerabilities stay the same as eavesdropping or DOS attacks are still a threat. \\
+In LE there still are modes and levels. The highes required level between endpoints is enforced for both. Pairing still provides no eavesdropping protection and key distribution is needed. A AES 128Bit encryption function provides the keys. The key can be compromised resulting in MITM attack on "Just Works" mode, leaking information and weak password vulnerability allows guessing attacks. \\
+The enhancements of previous versions can still be bypassed. Since mode level 1 has no authentication or encryption automatically paired devices (like headphones) don't provide any protection at all. A handshake (challenge response) process with some randomness could help here again. This problems are a result of rating convenience for the user higher than security.
+The paper is hard to read because there are not many full sentences and the meaning is often not clear.\\
+\\
+In \cite{DBLP:conf/woot/Ryan13} the authors introduce the Ubertooth platform and like in \cite{DBLP:conf/greencom/XuZLMLCSTY13}  point out that the compromises that were made for convenience ease the task of creating a eavesdropping tool. Ubertooth is a USB dongle which can capture a single frequency (one at a time) converting the signal in a bitstream. This bitstream is processed on the dongle which provides possibilities of exact timing of actions. With this technic they build a sniffer following the frequency hopping of the targets. If it is possible the values needed to hop with the targets can be derived directly from the initialization process or recovered from empty filler packages later. The recovery needs precise timing. The formulas used to calculate the next channel, the channels hopped and the hop interval can be seen in figure \ref{le_bt_formulas}. The time measure can be done listening to fixed channels (0 and 1) and calculate the time between two data packets sent.
+
+\begin{figure}[h]
+\begin{center}
+\begin{math}
+	nextChannel = channel + hopIncrement
+	hopInterval = \frac{\Delta t}{37 * 1.25ms}
+	channelsHopped = \frac{\Delta t}{1.25ms * hopInterval}
+\end{math}
+\caption{Channel calculation and hop interval \cite{DBLP:conf/woot/Ryan13}}
+\label{le_bt_formulas}
+\end{center}
+\end{figure}
+ The channelsHopped value has to be calculated a bit more complicated but is also feasible. They further describe the attack against the key exchange rather than the encryption(AES) itself. Even if the nonce is not known jamming the signal leads to a reconnect where the nonce can be sniffed. Additionally a trajectory for active and a MITM attack are proposed for future works.
+The conclusion on BTLE passive sounds as followed:
+\begin{quote}
+	"We also demonstrate an attack against the key exchange protocol which renders the encryption useless against passive eavesdroppers. This eliminates any confidentially associated with the protocol."\cite{DBLP:conf/woot/Ryan13}
+\end{quote}
+which sounds not very nice for all the upcoming smartwatches transferring private data.\\
+The approach is very promising and holds much potential. The paper is well written and understandable.
 
 \subsection{Further development}
-no fee for BT 4.0, Spreading, Usage standard keys
+Because the SIP charges no fee for BT 4.0 the increase of BT enabled devices will be steady. With more devices at home become part of the IoT the security issues may concern everyone in some years. The usage of standard keys or "Just Works" couplings should be avoided anyway. A combination of the attack described in \cite{DBLP:conf/woot/Ryan13} with the model-based risk testing from \cite{DBLP:conf/automotiveSS/JakobKSGMSF12} could help to make future versions of BTLE more secure.
 
 %% Conclusion
-%% ----------------------------------------------------------------------------
+%% ------------------------------------attacks----------------------------------------
 \section{Conclusion}
 Put your conclusion about the topic here
 
