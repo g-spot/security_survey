@@ -6,6 +6,7 @@
 \usepackage{nicefrac}
 \usepackage{caption}
 \usepackage{wrapfig}
+\usepackage{amsmath}
 
 %% The title of your survey
 \title{ Survey of mobile network security in trending technologies, focusing on Bluetooth and NFC }
@@ -307,11 +308,11 @@ In \cite{DBLP:conf/woot/Ryan13} the authors introduce the Ubertooth platform and
 
 \begin{figure}[h]
 \begin{center}
-\begin{math}
-	nextChannel = channel + hopIncrement
-	hopInterval = \frac{\Delta t}{37 * 1.25ms}
-	channelsHopped = \frac{\Delta t}{1.25ms * hopInterval}
-\end{math}
+	\begin{align*}
+		nextChannel = channel + hopIncrement\\
+ 		hopInterval = \frac{\Delta t}{37 * 1.25ms} \\
+ 		channelsHopped = \frac{\Delta t}{1.25ms * hopInterval}
+	\end{align*}
 \caption{Channel calculation and hop interval \cite{DBLP:conf/woot/Ryan13}}
 \label{le_bt_formulas}
 \end{center}
@@ -332,7 +333,7 @@ Because the SIP charges no fee for BT 4.0 the increase of BT enabled devices wil
 \section{Conclusion}
 Put your conclusion about the topic here
 
-
+In case of bluetooth one can get the feeling that security is not a real concern. It may be sufficient in private environments but for industrial applications it cannot be suggested as secure solution. From accidents in traffic to control factory devices much seems to be possible. Enforcing basic authentication and encryption even in private applications could make it hard to carry out eavesdropping attacks on in example A-ENV.
 
 %% References 
 %% ----------------------------------------------------------------------------
