@@ -13,10 +13,13 @@ Strengths of the paper are clearly that very often good examples are provided, e
 
                     ===== Paper weaknesses =====
 
-To my mind, the biggest weakness of the paper is sometimes the understandability, especially in the bluetooth part. Often many technical expressions are introduced in one sentence without explanation, which makes it very hard for a reader, that does not know these expressions. I want to give some examples about this here: "AM carrier", "TX", "A-ENV". The bluetooth part seems often to be an not very understandable excerpt of other papers, it was very hard for me to follow the descriptions with complicated formulas and expressions. The author is flip-flopping very fast between different attacks and countermeasures here, without making paragraphs or introductions about them. There is a big graphic in the bluetooth part, that was not understandable for me. I am missing the real contribution, it often seems like a listing of what people did in other papers. And I would prefer a not so technical detail and where it is necessary, try to explain expressions, formulas and graphics that are not 100% understandable and clear for every IT guy.
+[TODO for BT part shorty, SOLVED for NFC part by gertschi - removed technical terms] To my mind, the biggest weakness of the paper is sometimes the understandability, especially in the bluetooth part. Often many technical expressions are introduced in one sentence without explanation, which makes it very hard for a reader, that does not know these expressions. I want to give some examples about this here: "AM carrier", "TX", "A-ENV". The bluetooth part seems often to be an not very understandable excerpt of other papers, it was very hard for me to follow the descriptions with complicated formulas and expressions. The author is flip-flopping very fast between different attacks and countermeasures here, without making paragraphs or introductions about them. There is a big graphic in the bluetooth part, that was not understandable for me. I am missing the real contribution, it often seems like a listing of what people did in other papers. And I would prefer a not so technical detail and where it is necessary, try to explain expressions, formulas and graphics that are not 100% understandable and clear for every IT guy.
 
 At the end I want to give a few more tips regarding some details of the paper:
-In chapter 2.2.2 and following do not start with the text content in the same line as the header.
-In chapter 2.3 the beginning is not really good. In my opinion the verbalism is not good English.
-In the bluetooth part, there is first a historical boundary between usage of PIN and public/private key, then later you talk about PINs in combination with public/private key, this was very irritating for me.
+
+[NO-PROBLEM by gertschi - dudeeeee thats latex... you didn't get the idea, right] In chapter 2.2.2 and following do not start with the text content in the same line as the header.
+
+[SOLVED by gertschi - improved the sentence] In chapter 2.3 the beginning is not really good. In my opinion the verbalism is not good English.
+
+[TODO shorty ???]In the bluetooth part, there is first a historical boundary between usage of PIN and public/private key, then later you talk about PINs in combination with public/private key, this was very irritating for me.
 Like I said, for me, and I am even a usually very IT affine guy, a very large amount of the bluetooth part was completely not understandable, also when reading it a several times.

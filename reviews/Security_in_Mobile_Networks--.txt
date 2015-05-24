@@ -28,11 +28,12 @@
 	
                     ===== Paper weaknesses =====
 					
-	You often use too many technical terms within a few sentences and this makes it really hard to read. (Just one Example is: 2.2.2 Countermeasures against Smart Poster Spoofing)
-	Same for the section where you describe the bluetooth technologies. May you can enumerate them or insert a table which makes it easier to understand.
+[SOLVED by gertschi, removed technical terms]	You often use too many technical terms within a few sentences and this makes it really hard to read. (Just one Example is: 2.2.2 Countermeasures against Smart Poster Spoofing)
+
+[TODO shorty]	Same for the section where you describe the bluetooth technologies. May you can enumerate them or insert a table which makes it easier to understand.
 	
-	May you can proofread your paper again and set some missing commas. You sometime have sentences going over 3 lines without a break.
+[TODO shorty at bluetooth sections]	May you can proofread your paper again and set some missing commas. You sometime have sentences going over 3 lines without a break.
 	
-	Like mentioned above you have split up NFC and Bluetooth, but may there are some issues or details which are relevant for both.
+[NO-PROBLEM no way this is wayyyyyy too much overhead]	Like mentioned above you have split up NFC and Bluetooth, but may there are some issues or details which are relevant for both.
 	It would be nice if you can compare the attack vectors of both in a short paragraph.
 	

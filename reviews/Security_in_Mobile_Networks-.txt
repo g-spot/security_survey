@@ -41,10 +41,12 @@ Strengths
 Weaknesses
 ----------
 
-* The structure of the bluetooth part is not as clear
-* I would like to see one small paragraph about relevant security conferences
+[TODO shorty, see other reviews... just decomplicate some sentences if there is time]* The structure of the bluetooth part is not as clear
+
+[NO-PROBLEM no wayyyyyyyy]* I would like to see one small paragraph about relevant security conferences
   or research groups in this field.
-* Too many technical details in some cases. Sentences like "... of the NFC
+
+[TODO at BT part by shorty, SOLVED for NFC part by gertschi - removed technical terms] * Too many technical details in some cases. Sentences like "... of the NFC
   subcarrier using load-based modulation of the tuned coil.", need either more
   explanation or simplification. This is especially true for the bluetooth part
   where multiple tools and formulas are mentioned without explanation.

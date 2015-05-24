@@ -17,18 +17,19 @@ The first part of the paper (NFC) is well written, well structured and easy to u
 
                     ===== Paper weaknesses =====
 
-nShield is first mentioned in section 2.2.2 on page 5 being compared to EnGarde, without further explanation. The explanation follows in 2.3.1, two pages later. Thus a reference to section 2.3.1 should be added.
+[SOLVED by gertschi, simply switched the two sections] nShield is first mentioned in section 2.2.2 on page 5 being compared to EnGarde, without further explanation. The explanation follows in 2.3.1, two pages later. Thus a reference to section 2.3.1 should be added.
 
-As mentioned above the NFC part goes into too much detail, especially the countermeasures are explained at length.
+[SOLVED by gertschi, removed all physical/electrotechnical details] As mentioned above the NFC part goes into too much detail, especially the countermeasures are explained at length.
 
-The Bluetooth part (section 3) is insufficiently structured (especially section 3.2.2 and 3.2.3) and reads like a concatenation of paper reviews.
+[TODO shorty, but i think it would be too much overhead to solve this hint] The Bluetooth part (section 3) is insufficiently structured (especially section 3.2.2 and 3.2.3) and reads like a concatenation of paper reviews.
 
-The introduction contains too many details about Bluetooth (i.e. 2.4 to 2.485 GHz, 100mW, 2.5mW and 1mW, 24 Mbit/s). The same applies for sections 3.2.2 and 3.2.3.
+[TODO shorty, drop some details] The introduction contains too many details about Bluetooth (i.e. 2.4 to 2.485 GHz, 100mW, 2.5mW and 1mW, 24 Mbit/s). The same applies for sections 3.2.2 and 3.2.3.
 Being less detailed would help the authors to stay within the page limit.
 
-The paper contains aspects of a review, which should be removed i.e. "The paper is hard to read because there are not many full sentences and the meaning is often not clear." and "The paper is well written and understandable."
+[TODO shorty, maybe you can drop that sentences] The paper contains aspects of a review, which should be removed i.e. "The paper is hard to read because there are not many full sentences and the meaning is often not clear." and "The paper is well written and understandable."
 
-Pages 4, 5, 11 and 13 contain hidden text probably because of included figures, which is visible when the text is marked.
+[TODO gertschi, find a way to include PDF graphics from paper sources without including hidden text] Pages 4, 5, 11 and 13 contain hidden text probably because of included figures, which is visible when the text is marked.
 
-The paper contains footnotes referring to websites, which should include access dates.
-In section 2.3 the authors should use a proper citation (\cite) for "to listen secretly to the private conversation of others" instead of a footnote.
+[SOLVED by gertschi, added last-accessed-dates to all footnote urls] The paper contains footnotes referring to websites, which should include access dates.
+
+[NO-PROBLEM by gertschi, this is a wrong hint in my opinion] In section 2.3 the authors should use a proper citation (\cite) for "to listen secretly to the private conversation of others" instead of a footnote.

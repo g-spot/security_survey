@@ -63,13 +63,33 @@ Basically two types of NFC devices exist. \emph{Active devices} take care of the
 
 Mobile devices can choose out of three different communication modes. In \emph{Peer-To-Peer} mode, two active NFC-enabled devices communicate on an equal basis. Usually the task of emitting the necessary magnetic field is carried out in an alternating way by both participants. In \emph{Reader/Writer} mode an active device is reading data from respectively writing data to passive NFC tags. Finally, in \emph{Card Emulation} mode a mobile device is acting as NFC tag allowing other (active) devices to read information from it. This mode is mostly used for electronic ticketing or contactless payment applications using mobile phones.
 
+\subsection{Eavesdropping Near Field Communication}
+
+Eavesdropping, ``to listen secretly to the private conversation of others"\footnote{\url{http://www.thefreedictionary.com/eavesdrop}, last accessed: May 24, 2015}, concerns almost any forms of transmission of digital data. Obviously, wireless connections are particularly vulnerable to being intercepted by third persons, which of course also applies to NFC connections. \cite{DBLP:conf/icitst/EvestiSS13}
+
+Despite the general opinion that the operating distance of NFC is too short for the possibility of eavesdropping attacks, recent research suggests to keep it definitely in mind. Although the working distance does usually not exceed 10 to 20 centimeters, many devices emit NFC signals at much higher strength as necessary. In \cite{DBLP:conf/mobisys/ZhouX14} it is proved that in some cases transmissions can be intercepted within up to a range of 240 cm. This is at least more than an order of magnitude in comparison to the above-mentioned intended operating distinace of few centimeters, which probably suffices for performing serious attacks.
+
+\subsubsection{Countermeasure: Signal attenuation}
+
+The authors of \cite{DBLP:conf/mobisys/ZhouX14} propose a hardware-level solution. As current NFC chipsets use fixed transmission power, device-internal solutions are difficult to find. Thus, \emph{nShield} is introduced, which is basically an electronic element of credit card-size, to be attached at the back of the NFC device. The elements purpose is to attenuate the device-provided radio-frequency field, if it is too strong. One of the challenges of this approach is, that different devices issue their radio frequency (RF) fields in different strengths. Thus, a fixed attenuation factor probably would lead to unsatisfactory results. Therefor, an adaptive RF field strength regulation is designed, which ensures the sufficiency of the emitted signal strength and prohibits signal loss.
+
+\emph{nShield} basically consists of two components. First, a software-defined passive NFC radio-platform, capable of receiving and transmitting data. Therefor, an antenna is attached for attenuating signals. The antenna is further used for harvesting energy from the emitted RF field of the device. Using a sophisticated technique, a 20mAh on-board battery is charged. The energy harvested in this manner is sufficient for ensuring permanent power supply for the component. Thus, an external power supply is not necessary.
+
+\begin{quote}
+``nShield reduces the risk of eavesdropping by absorbing the excessive RF power radiated by the initiator with an adjustable attenuator [...]"\cite{DBLP:conf/mobisys/ZhouX14}
+\end{quote}
+
+The second important component is the algorithm used for the adaptive RF field attenuation. It is capable of computing the optimal transmission power that is just sufficient to guarantee reliable transmission of all data packets. If no RF field is present, the component falls asleep to conserve power.
+
+Experimentation results with the prototype show a mean delay due to the attenuation process of 2.1 seconds, measured from the very first probe transmission to the point in time the optimal attenuation level is determined. It is also shown that, using simple aluminium foil to reduce the strength of the RF field of an initiator, the maximum passive eavesdropping distance can be reduced to about 80 centimeters without affecting the reliability of connection. However, a concrete comparison of eavesdropping distances without/with \emph{nShield} attached to a NFC device is somehow missing. 
+
 \subsection{Smart Poster Spoofing}
 
-Typically, NFC communication between mobile devices and tags (or other devices) uses the \emph{NFC Data Exchange Format (NDEF)}. It is defined by the NFC Forum\footnote{\url{www.nfc-forum.org}}, a standardization organisation in the area of NFC. The NDEF format consists of several record data types, headed by \emph{Text}, \emph{URI} and \emph{Smart Poster} record types.\cite{DBLP:conf/IEEEares/Mulliner09}\cite{DBLP:conf/mobisys/GummesonPGTZ13}
+Typically, NFC communication between mobile devices and tags (or other devices) uses the \emph{NFC Data Exchange Format (NDEF)}. It is defined by the NFC Forum\footnote{\url{http://www.nfc-forum.org}, last accessed: May 24, 2015}, a standardization organisation in the area of NFC. The NDEF format consists of several record data types, headed by \emph{Text}, \emph{URI} and \emph{Smart Poster} record types.\cite{DBLP:conf/IEEEares/Mulliner09}\cite{DBLP:conf/mobisys/GummesonPGTZ13}
 
 Text records simply contain an arbitrary, human-readable text, optionally followed by a language identifier.
 
-URI records include a URI of arbitrary protocol pointing to further information or an action to perform. Based on the protocol, e.g. HTTP, TEL, SMS, MAILTO, the receiving device determines the target application to deal with the given URI. Thus the NFC subsystem of a device can be seen as kind of a job dispatcher.
+URI records include an URI of arbitrary protocol pointing to further information or an action to perform. Based on the protocol, e.g. HTTP, TEL, SMS, MAILTO, the receiving device determines the target application to deal with the given URI. Thus the NFC subsystem of a device can be seen as kind of a job dispatcher.
 
 Smart Poster records usually consist of a text record, containing the title or short description of a hovered NFC tag, and a URI record pointing to some more detailed information on the item the tag is attached to. One proper use case is, as already mentioned above, to provide further information on museum exhibits by just hovering the attached NFC tag.
 
@@ -106,62 +126,13 @@ While the previously presented countermeasures use device-internal verification 
 
 The detection of unwanted or manipulated messages uses a programmable, rule-based approach. As a result, messages of specific (1) \emph{protocols}, (2) \emph{tag identifiers} or even (3) \emph{message content} can be blocked.
 
-(1) The identification of the present protocol starts with an examination of the first pulse of the AM carrier of a message. After gaining a first grouping by this step, a lightweight algorithm is deployed to exactly identify the used protocol by having a quick look at the first bytes of the sniffed transmission. Practically, protocol prohibition can be used for e.g. avoiding all communications over the ISO-14443-A protocol, which can be used to read out a devices NFC identifier.
+(1) The identification of the present protocol starts with an examination of the very first signals of a message. After gaining a first grouping by this step, a lightweight algorithm is deployed to exactly identify the used protocol by having a quick look at the first bytes of the sniffed transmission. Practically, protocol prohibition can be used for e.g. avoiding all communications over the ISO-14443-A protocol, which can be used to read out a devices NFC identifier.
 
 (2) Tag identifiers can also be sniffed at an early phase of the connection, the so-called anti-collision phase. Consequently, blacklisted tags or even whole families of tags (e.g. from a certain manufacturer) can be blocked.
 
 (3) Using a software graph structure, connections can even be blocked by specific contents of a message, which occurs to be the finest granularity of blocking rules. Considering the above-discussed NDEF data exchange format, messages containing particular blacklisted URI records (e.g. all URIs starting with ``http://www.evil.com") can be blocked.
 
-The concrete implementation of signal jamming is based on the type of NFC connection. For tag-to-reader communications \emph{reflective jamming} is used, which basically generates a subcarrier of same frequency of the NFC subcarrier (i.e. 847.5kHz) using load-based modulation of the tuned coil. In contrast, for interrupting incoming active NFC communications, so-called \emph{pulse jamming} is introduced, which unfolds its destructive power by generation of targeted pulses. Both jamming techniques work at very low power consumptions.
-
-\subsection{Eavesdropping Near Field Communication}
-
-Eavesdropping, ``to listen secretly to the private conversation of others"\footnote{\url{http://www.thefreedictionary.com/eavesdrop}}, concerns almost any forms of transmission of digital data. Obviously, wireless connections are particularly vulnerable to being intercepted by third persons, and so NFC connections are. \cite{DBLP:conf/icitst/EvestiSS13}
-
-Despite the general opinion that the operating distance of NFC is too short for the possibility of eavesdropping attacks, recent research suggests to keep it definitely in mind. Although the working distance does usually not exceed 10 to 20 centimeters, many devices emit NFC signals at much higher strength as necessary. In \cite{DBLP:conf/mobisys/ZhouX14} it is proved that in some cases transmissions can be intercepted within up to a range of 240 cm. This is at least more than an order of magnitude in comparison to the above-mentioned intended operating distinace of few centimeters, which probably suffices for performing serious attacks.
-
-\subsubsection{Countermeasure: Signal attenuation}
-
-The authors of \cite{DBLP:conf/mobisys/ZhouX14} propose a hardware-level solution. As current NFC chipsets use fixed transmission power, device-internal solutions are difficult to find. Thus, \emph{nShield} is introduced, which is basically an electronic element of credit card-size, to be attached at the back of the NFC device. The elements purpose is to attenuate the device-provided radio-frequency field, if it is too strong. One of the challenges of this approach is, that different devices issue their RF fields in different strengths. Thus, a fixed attenuation factor probably would lead to unsatisfactory results. Therefor, an adaptive RF field strength regulation is designed, which ensures the sufficiency of the emitted signal strength and prohibits signal loss.
-
-\emph{nShield} basically consists of two components. First, a software-defined passive NFC radio-platform, capable of receiving and transmitting data. The platform uses its antenna for attenuating signals as well as for harvesting energy from the emitted RF field of the device it is attached to. By rectifying the RF signal to a DC voltage and the following regulation of the voltage a 20mAh on-board battery is charged. The energy harvested in this manner is sufficient for ensuring permanent power supply for the component. Thus, an external power supply is not necessary.
-
-\begin{quote}
-``nShield reduces the risk of eavesdropping by absorbing the excessive RF power radiated by the initiator with an adjustable attenuator, which is multiplexed with the load modulator."\cite{DBLP:conf/mobisys/ZhouX14}
-\end{quote}
-
-The second important component is the algorithm used for the adaptive RF field attenuation. An embedded TX control circuit ensures strictly timed data transmissions in a synchronized manner based on the data rate of the used modulation scheme. After extracting the raw transmission data by removing the AM carrier and demodulating the baseband signal, the optimal transmission power of the initiator is computed. Therefor the successful reception of previous messages is derived by analyzing logical relations between consecutive messages. Binary search is used to accelerate this step.	If no RF field is present, the component falls asleep to conserve power.
-
-%Figure \ref{img_nshield} shows a prototype compilation of the necessary hardware components, attached to a Google Nexus 7 tablet. While the size of the circuit board is 5.5 cm by 5.3 cm, the antenna measures 9.6 by 9.6 cm. The components could be shrinked further without loss of functionality to fit smaller mobile devices. Component cost is specified with under \$20.
-
-%\begin{figure}
-%\begin{center}
-%\includegraphics{img/nshield}
-%\caption{\footnotesize{Antenna and circuit of \emph{nShield} mounted on the back of a Google Nexus 7 tablet\cite{DBLP:conf/mobisys/ZhouX14}}}
-%\label{img_nshield}
-%\end{center}
-%\end{figure}
-
-Experimentation results with the prototype show a mean delay due to the attenuation process of 2.1 seconds, measured from the very first probe transmission to the point in time the optimal attenuation level is determined. It is also shown that, using simple aluminium foil to reduce the strength of the RF field of an initiator, the maximum passive eavesdropping distance can be reduced to about 80 centimeters without affecting the reliability of connection. However, a concrete comparison of eavesdropping distances without/with \emph{nShield} attached to a NFC device is somehow missing.
-
-%\subsubsection{Countermeasure: Signal jamming}
-
-% TODO denial of service? = basically just jamming the signal - from the attackers point of view
-
-%bar bar foo foo
-
-%\subsubsection{TODO: Software countermeasure?}
-
-%Software level: TODO maybe find a solution to NFC eavesdropping at software level?
-
-
-%\subsection{Relay attacks}
-
-%TODO man-in-the-middle? more general than relay attacks?
-
-%Problem description, practical implementations and countermeasures \cite{DBLP:journals/compsec/HanckeMM09} \cite{DBLP:conf/rfidsec/FrancisHMM10} \cite{DBLP:conf/sec/RolandLS12}
-
-%bar bar foo foo
+The concrete hardware implementation of signal jamming is based on the type of NFC connection. For example, tag-to-reader communications have to be jammed using different mechanisms than incoming active NFC communications. However, all mechanisms are designed to work at very low power consumptions.
 
 \section{Security in Bluetooth communications}
 \subsection{Terms and general description}
@@ -173,7 +144,7 @@ Experimentation results with the prototype show a mean delay due to the attenuat
 %  \label{img_bt_logo}
 %\end{wrapfigure}
 The technology behind Bluetooth (BT) was developed in the early 1990s and commercialy successful after the millennium. With the integration  the main stream devices and Microsoft Windows (XP SP1 2001) security flaws started to pop up. Similar to NFC Bluetooth is a radiation based communication technology for one to seven devices. Bluetooth devices can either work in \emph{master} or \emph{slave} role. The range and used technology on the other hand differ as described later. 
-Bluetooth has a broad variety of use cases, e.g. headsets, input devices, gaming consoles, industry networks, cars and even medical equipment like a pacemaker. At the \emph{Chaos Computer Congress 2007} (CCC) there was a talk about "Hacking the Bionic Man" \footnote{\url{http://events.ccc.de/camp/2007/Fahrplan/events/2049.en.html}} including Bluetooth attacks. Therefore not only smartphones, cars and our computers are vulnerable to attacks.
+Bluetooth has a broad variety of use cases, e.g. headsets, input devices, gaming consoles, industry networks, cars and even medical equipment like a pacemaker. At the \emph{Chaos Computer Congress 2007} (CCC) there was a talk about "Hacking the Bionic Man" \footnote{\url{http://events.ccc.de/camp/2007/Fahrplan/events/2049.en.html}, last accessed: May 24, 2015} including Bluetooth attacks. Therefore not only smartphones, cars and our computers are vulnerable to attacks.
 Although the work is a few years old, it is still relevant. Recent applications are wearables like fitness wristbands or watches. With everyone owning a BT enabled notebook, smartphone, car or already a smartwatch this targets most people.
 
 Bluetooth uses the (ISM) band at 2.4 to 2.485 GHz and is distinguished in three classes and four versions. The first class uses a power of 100mW and has a range of about 100m. The second class uses 2.5mW with a range of 10 meter. The third class uses only 1mW with a range of about 1m.
@@ -231,7 +202,7 @@ The application of vulnerabilities was tested in \cite{DBLP:journals/corr/abs-12
 "In order to find out the major vulnerabilities in modern Bluetooth-enabled mobile devices several attacks have performed successfully such as Surveillance, Obfuscation, Sniffing, Unauthorized Direct Data Access (UDDA) and Man-in-the-Middle Attack (MITM)." \cite{DBLP:journals/corr/abs-1206-1482}
 \end{quote}
 %You can see some of the logos of attacks in \ref{img_bt_attack_logos}. The background was already explained in the last sections. 
-Now we have a look at how some of these attacks are carried out in \cite{DBLP:journals/corr/abs-1206-1482}. The environment is a computer with BT and some linux OS like Backtrack\footnote{\url{http://www.backtrack-linux.org}} (now called Kali Linux). The author chose some older test devices (mobile phones and headsets). He uses \emph{hci-tools} found in the  \emph{BlueZ} package to determine information about the build-in device and control encryption or authentication. For connection to the test devices a RFCOMM connection is used with the command \emph{rfcomm}. Using the tool \emph{BT-Audit} he shows how to retrieve information needed to perform an attack. This concrete threat is \emph{Surveillance} mentioned in the last section. Further, he carried out the trick of obfuscation in changing the name, class and address of the adapter using \emph{HCIconfig} and \emph{SpoofTooth}. So far everything was successful. Trying a \emph{Fuzzer} attack failed:
+Now we have a look at how some of these attacks are carried out in \cite{DBLP:journals/corr/abs-1206-1482}. The environment is a computer with BT and some linux OS like Backtrack\footnote{\url{http://www.backtrack-linux.org}, last accessed: May 24, 2015} (now called Kali Linux). The author chose some older test devices (mobile phones and headsets). He uses \emph{hci-tools} found in the  \emph{BlueZ} package to determine information about the build-in device and control encryption or authentication. For connection to the test devices a RFCOMM connection is used with the command \emph{rfcomm}. Using the tool \emph{BT-Audit} he shows how to retrieve information needed to perform an attack. This concrete threat is \emph{Surveillance} mentioned in the last section. Further, he carried out the trick of obfuscation in changing the name, class and address of the adapter using \emph{HCIconfig} and \emph{SpoofTooth}. So far everything was successful. Trying a \emph{Fuzzer} attack failed:
 \begin{quote}
 "Despite I have found phones with older version of Bluetooth, buzzer attacks are completely deprecated because the exploited vulnerabilities were fixed. \emph{Bluetooth Stack Smasher} (BSS) and \emph{blueSmack} have become completely useless." \cite{DBLP:journals/corr/abs-1206-1482}
 \end{quote}
@@ -250,7 +221,7 @@ The last points of his testing is a MITM attack to capture or inject audio and p
 The conclusion is that for older devices these attacks work but he recognized that the tools were not updated recently. This could be an indicator of more fixed vulnerabilities.
 
 \paragraph{Risk-based testing in A-ENV}
-In \cite{DBLP:conf/automotiveSS/JakobKSGMSF12} an approach to generate test cases for risk-based testing in A-ENV is planned and demonstrated. They use the project DIAMONDS\footnote{\url{http://www.itea2-diamonds.org}} where a risk oriented \emph{model-based testing} (MBT) concept was defined including A-ENV. By defining test cases and using fuzzing the final set is generated. The focus is on infotainment systems with support for instance services like hands-free calling or navigation over Bluetooth. Other bus systems in the car may also be vulnerable through this corridor leading to possibilities in the worst case of controlling the breaks over Bluetooth.
+In \cite{DBLP:conf/automotiveSS/JakobKSGMSF12} an approach to generate test cases for risk-based testing in A-ENV is planned and demonstrated. They use the project DIAMONDS\footnote{\url{http://www.itea2-diamonds.org}, last accessed: May 24, 2015} where a risk oriented \emph{model-based testing} (MBT) concept was defined including A-ENV. By defining test cases and using fuzzing the final set is generated. The focus is on infotainment systems with support for instance services like hands-free calling or navigation over Bluetooth. Other bus systems in the car may also be vulnerable through this corridor leading to possibilities in the worst case of controlling the breaks over Bluetooth.
 
 The system under test (SUT) can be used to reduce the overhead on test instances of the fuzzer because many input combinations are rejected. Moreover it is stated that it is not guaranteed that a vulnerability can cause immediate reaction. For example, it can happen that battery or memory usage increase over time. They used a test setup and a framework (do.ATOMS) to try the approach. With a diagram for risk analysis containing likelihood-values for edges it is possible to build a sum for consequences\ref{consequences_formula}. In the diagram the start point is a threat and the endpoint is the threat-scenario. The paths correspond to different vulnerabilities which could lead to the threat scenario. 
 The weighted security score resulting can be calculated as seen in figure \ref{security_formula}. The result is a relevant threat.
