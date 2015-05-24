@@ -1,0 +1,22 @@
+---------------------------------------------------------------------------
+   Paper: SECURITY IN MOBILE NETWORKS
+---------------------------------------------------------------------------
+
+                    ===== Paper summary =====
+
+The papers deals with security aspects of mobile networks and there focuses on two candidates of mobile networking, NFC and bluetooth. So the paper is split in these two main parts. Each part briefly introduces the protocol characteristics, different modes and historical versions that are important about each technology. For most of the features of the technologies, possible attacks are mentioned and explained, then countermeasures against this attacks are introduced. Summarized the paper briefly describes NFC and bluetooth and their characteristics and use cases, show a quite large amount of possible attacks and give countermeasures or recommend a way for future development against those.
+
+
+                    ===== Paper strengths =====
+
+Strengths of the paper are clearly that very often good examples are provided, e.g. when talking about an attack, examples with graphics make it more descriptive for the reader. Characteristics of both mobile network technologies are described in an understandable way. Also use cases are clearly pointed out. Especially in the NFC part there is always a common thread to follow, and most times the part is clearly understandable, also for a not so technically adebt reader. After reading the paper the reader gains a good rough overview of the kind of attacks on this two mobile network designs and also why they are possible and what can be done about it or why it is sometimes very difficult.
+
+                    ===== Paper weaknesses =====
+
+To my mind, the biggest weakness of the paper is sometimes the understandability, especially in the bluetooth part. Often many technical expressions are introduced in one sentence without explanation, which makes it very hard for a reader, that does not know these expressions. I want to give some examples about this here: "AM carrier", "TX", "A-ENV". The bluetooth part seems often to be an not very understandable excerpt of other papers, it was very hard for me to follow the descriptions with complicated formulas and expressions. The author is flip-flopping very fast between different attacks and countermeasures here, without making paragraphs or introductions about them. There is a big graphic in the bluetooth part, that was not understandable for me. I am missing the real contribution, it often seems like a listing of what people did in other papers. And I would prefer a not so technical detail and where it is necessary, try to explain expressions, formulas and graphics that are not 100% understandable and clear for every IT guy.
+
+At the end I want to give a few more tips regarding some details of the paper:
+In chapter 2.2.2 and following do not start with the text content in the same line as the header.
+In chapter 2.3 the beginning is not really good. In my opinion the verbalism is not good English.
+In the bluetooth part, there is first a historical boundary between usage of PIN and public/private key, then later you talk about PINs in combination with public/private key, this was very irritating for me.
+Like I said, for me, and I am even a usually very IT affine guy, a very large amount of the bluetooth part was completely not understandable, also when reading it a several times.

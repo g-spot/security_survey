@@ -1,0 +1,34 @@
+---------------------------------------------------------------------------
+   Paper: Survey of mobile network security in trending
+technologies, focusing on Near Field Communication and Bluetooth
+---------------------------------------------------------------------------
+
+                    ===== Paper summary =====
+
+The paper gives an overview of mobile network security for Near Field Communication (NFC) and Bluetooth. Concerning the NFC technology the attacking techniques Smart Poster Spoofing and Eavesdropping are explained and countermeasures for these attacks are presented.
+
+In the second part of the paper the authors describe the basic security concepts of Bluetooth, i.e. modes, key management, authentication, encryption and trust levels. Also possible attacks against Bluetooth are shown. Additionally the paper contains executable attacks and risk analysis in the case of a Automotive Environment (A-ENV) as well as vulnerabilities of Bluetooth LE (Low Energy).
+
+
+                    ===== Paper strengths =====
+
+The paper has a good common introduction and specific introductions into NFC and Bluetooth.
+The first part of the paper (NFC) is well written, well structured and easy to understand. However the authors focus on too many details.
+
+                    ===== Paper weaknesses =====
+
+nShield is first mentioned in section 2.2.2 on page 5 being compared to EnGarde, without further explanation. The explanation follows in 2.3.1, two pages later. Thus a reference to section 2.3.1 should be added.
+
+As mentioned above the NFC part goes into too much detail, especially the countermeasures are explained at length.
+
+The Bluetooth part (section 3) is insufficiently structured (especially section 3.2.2 and 3.2.3) and reads like a concatenation of paper reviews.
+
+The introduction contains too many details about Bluetooth (i.e. 2.4 to 2.485 GHz, 100mW, 2.5mW and 1mW, 24 Mbit/s). The same applies for sections 3.2.2 and 3.2.3.
+Being less detailed would help the authors to stay within the page limit.
+
+The paper contains aspects of a review, which should be removed i.e. "The paper is hard to read because there are not many full sentences and the meaning is often not clear." and "The paper is well written and understandable."
+
+Pages 4, 5, 11 and 13 contain hidden text probably because of included figures, which is visible when the text is marked.
+
+The paper contains footnotes referring to websites, which should include access dates.
+In section 2.3 the authors should use a proper citation (\cite) for "to listen secretly to the private conversation of others" instead of a footnote.

@@ -1,0 +1,38 @@
+---------------------------------------------------------------------------
+   Paper: Survey of mobile network security in trending technologies, focusing on Near Field Communication and Bluetooth
+---------------------------------------------------------------------------
+
+                    ===== Paper summary =====
+
+	This paper describes the two wirless technologies bluetooth and NFC. In detail it summarizes two attacks on NFC and three attacks on bluetooth.
+	In fact they are describing already known threats and risks and give examples how they can be mitigated or prevented if possible.
+	When you read this paper you will get a detailed description about current risks, but you won't find an outlook to upcoming threats and neither an outlook in future research concerning this technology.
+	
+
+	
+                    ===== Paper strengths =====
+
+	Each technology or attack technique is described very well and the used figures are useful.
+	
+	You used some citations in your paper (The other group what I have reviewed doesn't).
+	
+	You have used all your references in the paper at least once. 
+	(May you can check if it is possible to search for the reference [4] in the pdf on your environment - At mine it doesn't find it)
+	
+	The paper is written good and has a clear structure. 
+	You split it up into NFC and BT and followed the same approach to describe them in both sections (Description / What it is used for / Hacks&Countermeasures).
+
+	Each section is enumerated and the whole document is divided into smaller parts. This shows that you know what you're talking about and how you can separate the topics.
+	
+	
+	
+                    ===== Paper weaknesses =====
+					
+	You often use too many technical terms within a few sentences and this makes it really hard to read. (Just one Example is: 2.2.2 Countermeasures against Smart Poster Spoofing)
+	Same for the section where you describe the bluetooth technologies. May you can enumerate them or insert a table which makes it easier to understand.
+	
+	May you can proofread your paper again and set some missing commas. You sometime have sentences going over 3 lines without a break.
+	
+	Like mentioned above you have split up NFC and Bluetooth, but may there are some issues or details which are relevant for both.
+	It would be nice if you can compare the attack vectors of both in a short paragraph.
+	

@@ -1,0 +1,51 @@
+Review: Survey of mobile network security in trending technologies
+==================================================================
+
+Summary
+-------
+
+The introduction does a good job at creating a context for the rest of the
+paper by providing some general numbers for both NFC and bluetooth.
+The remaining article is split in two where one author focuses on NFC where as
+the other focuses on bluetooth.
+
+The first part of the NFC section gives a competent introduction to NFC in
+general. The other two parts explain the "Smart Poster Spoofing" and
+"Eavesdropping" attacks respectively, including different countermeasures either
+in hardware, software or a combination thereof. All presented countermeasures 
+vary in overhead, complexity, effectiveness and the author does a good job at
+pointing them out.
+
+Same as in the NFC, the first part of the Bluetooth section gives an
+introduction to the different versions and modes of the BT technology.
+The remainder of the section presents different vulnerabilities and how they
+can be attacked and prevented for the different Bluetooth versions / modes.
+The section contains a good explanation of how "Secure Simple Pairing" works
+and how it can be exploited using a man-in-the-middle attack.
+The next part describes attacks and a risk-based testing approach used 
+in automotive environments. The attacks include Surveillance, Obfuscation,
+Sniffing, etc. and are each accompanied by a description and whether they were
+successful.
+The last part focuses on the Low Energy bluetooth mode, which was just recently
+introduced.
+
+Strengths
+---------
+
+* Clear and consistent general structure of the article.
+* Good choices of vulnerabilities and countermeasures (especially the NFC
+  section)
+* Actuality of the presented content: oldest article is from 2009 (!)
+
+
+Weaknesses
+----------
+
+* The structure of the bluetooth part is not as clear
+* I would like to see one small paragraph about relevant security conferences
+  or research groups in this field.
+* Too many technical details in some cases. Sentences like "... of the NFC
+  subcarrier using load-based modulation of the tuned coil.", need either more
+  explanation or simplification. This is especially true for the bluetooth part
+  where multiple tools and formulas are mentioned without explanation.
+
