@@ -30,19 +30,13 @@
 %% ----------------------------------------------------------------------------
 \begin{abstract}
 \noindent
-The usage of the relatively new mobile network technologies \emph{Near Field Communication} (NFC) and \emph{Bluetooth} is growing. As a result, there are many security issues to be dealt with. NFC is exposed to \emph{Smart Poster Spoofing} attacks as well as to \emph{Eavesdropping}. They can be handled utilizing either software approaches (e.g. trust verification) or hardware add-ons. Also Bluetooth communication has to cope with a wide range of possible attacks, e.g. classic \emph{Man-in-the-Middle} or \emph{Passphrase guessing} attacks. \emph{Risk-based testing} and other tools can be utilized to point out certain security threats. The main finding is, that there is lack of security integration in the core concepts of both discussed technolgies.
+The usage of the relatively new mobile network technologies \emph{Near Field Communication} (NFC) and \emph{Bluetooth} is growing. As a result, there are many security issues to be dealt with. NFC is exposed to \emph{Smart Poster Spoofing} attacks as well as to \emph{Eavesdropping}. They can be handled utilizing either software approaches (e.g. trust verification) or hardware add-ons. Also Bluetooth communication has to cope with a wide range of possible attacks, e.g. classic \emph{Man-in-the-Middle} or \emph{Passphrase guessing} attacks. \emph{Risk-based testing} and other tools can be utilized to point out certain security threats. The main finding is, that there is lack of security integration in the core concepts of both discussed technologies.
 \end{abstract}
 
 
 %% Introduction
 %% ----------------------------------------------------------------------------
 \section{Introduction}
-
-%What you should include in the introduction
-%\begin{itemize}
-% \item Describe the topic (Importance, Significance)
-% \item Give a summary of the surveyed topic
-%\end{itemize}
 
 Mobile Networks are all around us. Starting from basic GSM cellphone networks to special applications like contactless payment or any kind of wireless communications over a short distance, the importance of keeping security aspects in mind is obvious. In this survey we want to introduce two technologies, namely \emph{Near Field Communication} (NFC) and \emph{Bluetooth}, and discuss their security concepts, flaws and exploits. The necessity of security awareness using the two mentioned technologies can be underpinned with figures. In \cite{DBLP:conf/greencom/XuZLMLCSTY13} it is predicted, that by the year 2017 around 20 billion Bluetooth-enabled device will be shipped all over the world. According to \cite{DBLP:conf/trustcom/HameedHHK14}, about 50\% of the mobile phones will have built-in NFC support in 2015, and more than \$ 150 billion will be turned over utilizing NFC payments in 2015.
 In addition, both technologies are to support a wide variety of applications, e.g. in the fields of health care, wearables, gaming, transport, access control, payment and many more.
@@ -85,7 +79,7 @@ Experimentation results with the prototype show a mean delay due to the attenuat
 
 \subsection{Smart Poster Spoofing}
 
-Typically, NFC communication between mobile devices and tags (or other devices) uses the \emph{NFC Data Exchange Format (NDEF)}. It is defined by the NFC Forum\footnote{\url{http://www.nfc-forum.org}, last accessed: May 24, 2015}, a standardization organisation in the area of NFC. The NDEF format consists of several record data types, headed by \emph{Text}, \emph{URI} and \emph{Smart Poster} record types.\cite{DBLP:conf/IEEEares/Mulliner09}\cite{DBLP:conf/mobisys/GummesonPGTZ13}
+Typically, NFC communication between mobile devices and tags (or other devices) uses the \emph{NFC Data Exchange Format (NDEF)}. It is defined by the NFC Forum\footnote{\url{http://www.nfc-forum.org}, last accessed: May 24, 2015}, a standardization organization in the area of NFC. The NDEF format consists of several record data types, headed by \emph{Text}, \emph{URI} and \emph{Smart Poster} record types.\cite{DBLP:conf/IEEEares/Mulliner09}\cite{DBLP:conf/mobisys/GummesonPGTZ13}
 
 Text records simply contain an arbitrary, human-readable text, optionally followed by a language identifier.
 
@@ -136,19 +130,13 @@ The concrete hardware implementation of signal jamming is based on the type of N
 
 \section{Security in Bluetooth communications}
 \subsection{Terms and general description}
-%\begin{wrapfigure}{r}{0.5\textwidth}
-%  \begin{center}
-%    \includegraphics[width=0.48\textwidth]{img/730px-Bluetooth-Logo.png}
-%  \end{center}
-%  \caption{Bluetooth logo with the combined initial letters (runes) of King Harald "Bluetooth" Gormsson}
-%  \label{img_bt_logo}
-%\end{wrapfigure}
-The technology behind Bluetooth (BT) was developed in the early 1990s and commercialy successful after the millennium. With the integration  the main stream devices and Microsoft Windows (XP SP1 2001) security flaws started to pop up. Similar to NFC Bluetooth is a radiation based communication technology for one to seven devices. Bluetooth devices can either work in \emph{master} or \emph{slave} role. The range and used technology on the other hand differ as described later. 
+
+The technology behind Bluetooth (BT) was developed in the early 1990s and commercially successful after the millennium. With the integration  the main stream devices and Microsoft Windows (XP SP1 2001) security flaws started to pop up. Similar to NFC Bluetooth is a radiation based communication technology for one to seven devices. Bluetooth devices can either work in \emph{master} or \emph{slave} role. The range and used technology on the other hand differ as described later. 
 Bluetooth has a broad variety of use cases, e.g. headsets, input devices, gaming consoles, industry networks, cars and even medical equipment like a pacemaker. At the \emph{Chaos Computer Congress 2007} (CCC) there was a talk about "Hacking the Bionic Man" \footnote{\url{http://events.ccc.de/camp/2007/Fahrplan/events/2049.en.html}, last accessed: May 24, 2015} including Bluetooth attacks. Therefore not only smartphones, cars and our computers are vulnerable to attacks.
 Although the work is a few years old, it is still relevant. Recent applications are wearables like fitness wristbands or watches. With everyone owning a BT enabled notebook, smartphone, car or already a smartwatch this targets most people.
 
-Bluetooth uses the (ISM) band at 2.4 to 2.485 GHz and is distinguished in three classes and four versions. The first class uses a power of 100mW and has a range of about 100m. The second class uses 2.5mW with a range of 10 meter. The third class uses only 1mW with a range of about 1m.
-The four different versions introduced new features and higher data rates. In version 2.0 the \emph{Enhanced Data Rate} (EDR) was introduced. Currently version 4.0 from 2010 has a data rate of 24 Mbit/s (in 3.0 over a colocated 802.11 link). Additionally, 4.0 introduced \emph{Bluetooth low energy} (Bluetooth LE, BLE) to be run from a coin cell power source. The latest version 4.2 was released on December 2, 2014 introducing key features for the \emph{Internet of Things} (IoT).
+Bluetooth is distinguished in three classes and four versions. The first class uses a power of 100mW and has a range of about 100m. The second class uses 2.5mW with a range of 10 meter. The third class uses only 1mW with a range of about 1m.
+The four different versions introduced new features and higher data rates. In version 2.0 the \emph{Enhanced Data Rate} (EDR) was introduced. Currently version 4.0 from 2010 has a data rate of 24 Mbit/s. Additionally, 4.0 introduced \emph{Bluetooth low energy} (Bluetooth LE, BLE) to be run from a coin cell power source. The latest version 4.2 was released on December 2, 2014 introducing key features for the \emph{Internet of Things} (IoT).
 
 The above list is not nearly exhaustive because with every version different protocols, security standards, power control mechanisms and many other features were added. In the following section the used or exploited technologies will therefore be briefly introduced and discussed.
 
@@ -162,7 +150,6 @@ To gain a structured overview over the surveyed topic, the referenced papers wer
 
 
 \subsubsection{Basic technology and risks}
-%TODO: \cite{DBLP:journals/ijnsec/YehPWH12} \cite{DBLP:journals/ijnsec/Lackner13}  \cite{DBLP:conf/apnoms/FanSL11}
 
 \paragraph{Bluetooth Pairing}
 In versions below 2.1 a pin was used to authenticate between devices and then generate a link key and an encryption key for data transfer. The biggest problem with that was that when having the pin (or cracking) one can calculate the link key of the previous session and read all captured data. With version 2.1 the SIG (Special Interest Group) introduced the \emph{Secure Simple Pairing} (SSP) wich uses public-private key pairs to overcome the generation of the link key by pin guessing \cite{DBLP:conf/apnoms/FanSL11}. SSP has four stages described in \cite{DBLP:conf/apnoms/FanSL11},  \cite{DBLP:journals/ijnsec/YehPWH12} and in detail in \cite{DBLP:journals/ijnsec/Lackner13} :
@@ -187,26 +174,17 @@ It is further proposed to take advantage of the long DHKey by merging it with th
 
 In \cite{DBLP:journals/ijnsec/Lackner13} the analysis is more a listing starting with older versions and problems with all versions of BT. Followed to the listing is a classification of the attacks which seems to be pretty good summed up. They name following attacks: Surveillance, Range extension, Obfuscation, Fuzzer, Sniffing, Denial of Service (DOS), Malware, Unauthorized direct data access (UDDA) and the Man in the middle (MITM). Because the paper handles WLAN and WiMAX too there is no in depth testing or proposals for security enhancements. In the next section we will see some applications of the attacks stated in this section.
 
-
 \subsubsection{Executable attacks and risk analysis in case of A-ENV}
 
-%\begin{figure}[h]
-%\begin{center}
-%\includegraphics[scale=0.4]{img/bt_attack_logos.png}
-%\caption{Some applications of BT vulnerabilities \cite{DBLP:journals/corr/abs-1206-1482}}
-%\label{img_bt_attack_logos}
-%\end{center}
-%\end{figure}
 The application of vulnerabilities was tested in \cite{DBLP:journals/corr/abs-1206-1482} and summed up:
 \begin{quote}
 "In order to find out the major vulnerabilities in modern Bluetooth-enabled mobile devices several attacks have performed successfully such as Surveillance, Obfuscation, Sniffing, Unauthorized Direct Data Access (UDDA) and Man-in-the-Middle Attack (MITM)." \cite{DBLP:journals/corr/abs-1206-1482}
-\end{quote}
-%You can see some of the logos of attacks in \ref{img_bt_attack_logos}. The background was already explained in the last sections. 
-Now we have a look at how some of these attacks are carried out in \cite{DBLP:journals/corr/abs-1206-1482}. The environment is a computer with BT and some linux OS like Backtrack\footnote{\url{http://www.backtrack-linux.org}, last accessed: May 24, 2015} (now called Kali Linux). The author chose some older test devices (mobile phones and headsets). He uses \emph{hci-tools} found in the  \emph{BlueZ} package to determine information about the build-in device and control encryption or authentication. For connection to the test devices a RFCOMM connection is used with the command \emph{rfcomm}. Using the tool \emph{BT-Audit} he shows how to retrieve information needed to perform an attack. This concrete threat is \emph{Surveillance} mentioned in the last section. Further, he carried out the trick of obfuscation in changing the name, class and address of the adapter using \emph{HCIconfig} and \emph{SpoofTooth}. So far everything was successful. Trying a \emph{Fuzzer} attack failed:
+\end{quote} 
+Now we have a look at how some of these attacks are carried out in \cite{DBLP:journals/corr/abs-1206-1482}. The environment is a computer with BT and some linux OS like Backtrack\footnote{\url{http://www.backtrack-linux.org}, last accessed: May 24, 2015} (now called Kali Linux). The author chose some older test devices (mobile phones and headsets). \emph{hci-tools} is used to determine information about the build-in device and control encryption or authentication. For connection to the test devices a RFCOMM connection is used. Using the tool \emph{BT-Audit} he shows how to retrieve information needed to perform an attack. This concrete threat is \emph{Surveillance} mentioned in the last section. Further, he carried out the trick of obfuscation in changing the name, class and address of the adapter using \emph{HCIconfig} and \emph{SpoofTooth}. So far everything was successful. Trying a \emph{Fuzzer} attack failed:
 \begin{quote}
 "Despite I have found phones with older version of Bluetooth, buzzer attacks are completely deprecated because the exploited vulnerabilities were fixed. \emph{Bluetooth Stack Smasher} (BSS) and \emph{blueSmack} have become completely useless." \cite{DBLP:journals/corr/abs-1206-1482}
 \end{quote}
-Like \emph{blueSmack} DoS attacks are not working currently. \emph{Sniffing} was done with \emph{hcidump} command and worked.
+Denial of Service (DOS e.g. \emph{blueSmack} tool) attacks are not working currently. \emph{Sniffing} was done with \emph{hcidump} command and worked.
 
 A very interesting application is UDDA. With \emph{Bluebugger} and \emph{BlueSnarfer} he could carry out a partial attack. The reason why it does not work fully is because the target has to accept the connection. This attack is interesting because with \emph{bluesnarfer} it is possible to get the contact list (an example can be seen in figure \ref{img_bt_attack_bluesnarfer} with filter parameter and device MAC-address), messages and even dial numbers.
 \begin{figure}[h]
@@ -216,35 +194,15 @@ A very interesting application is UDDA. With \emph{Bluebugger} and \emph{BlueSna
 \label{img_bt_attack_bluesnarfer}
 \end{center}
 \end{figure}
-The last points of his testing is a MITM attack to capture or inject audio and password guessing (see previous section). The audio capturing was successful and the guess attack only needed some fixed k hash computations. He also stated that the active attack is even easier using an already existing automated pairing feature of most devices (random 6bit password in 10 attempts).
+The last points of his testing is a MITM attack to capture or inject audio and password guessing. The audio capturing was successful and the guess attack only needed some fixed k hash computations. It is also stated that the active attack is even easier using an already existing automated pairing feature of most devices (random 6bit password in 10 attempts).
 
 The conclusion is that for older devices these attacks work but he recognized that the tools were not updated recently. This could be an indicator of more fixed vulnerabilities.
 
 \paragraph{Risk-based testing in A-ENV}
 In \cite{DBLP:conf/automotiveSS/JakobKSGMSF12} an approach to generate test cases for risk-based testing in A-ENV is planned and demonstrated. They use the project DIAMONDS\footnote{\url{http://www.itea2-diamonds.org}, last accessed: May 24, 2015} where a risk oriented \emph{model-based testing} (MBT) concept was defined including A-ENV. By defining test cases and using fuzzing the final set is generated. The focus is on infotainment systems with support for instance services like hands-free calling or navigation over Bluetooth. Other bus systems in the car may also be vulnerable through this corridor leading to possibilities in the worst case of controlling the breaks over Bluetooth.
 
-The system under test (SUT) can be used to reduce the overhead on test instances of the fuzzer because many input combinations are rejected. Moreover it is stated that it is not guaranteed that a vulnerability can cause immediate reaction. For example, it can happen that battery or memory usage increase over time. They used a test setup and a framework (do.ATOMS) to try the approach. With a diagram for risk analysis containing likelihood-values for edges it is possible to build a sum for consequences\ref{consequences_formula}. In the diagram the start point is a threat and the endpoint is the threat-scenario. The paths correspond to different vulnerabilities which could lead to the threat scenario. 
-The weighted security score resulting can be calculated as seen in figure \ref{security_formula}. The result is a relevant threat.
+The system under test (SUT) can be used to reduce the overhead on test instances of the fuzzer because many input combinations are rejected. Moreover it is stated that it is not guaranteed that a vulnerability can cause immediate reaction. For example, it can happen that battery or memory usage increase over time. They used a test setup and a framework (do.ATOMS) to try the approach. With a diagram for risk analysis containing likelihood-values for edges it is possible to build a sum for consequences. In the diagram the start point is a threat and the endpoint is the threat-scenario. The paths correspond to different vulnerabilities which could lead to the threat scenario. Based on this paths a score corresponding to the threat can be calculated. 
 
-\begin{figure}[h]
-\begin{center}
-	\begin{math}
-	consequence = \sum_{i=1}^{N} (likelihood_{LeadsTo_i} * likelihood_{impacts_i} * consequence_i)
-	\end{math}
-	\caption{consequence with N...number of all possible paths \cite{DBLP:conf/automotiveSS/JakobKSGMSF12} }
-\label{consequences_formula}
-\end{center}
-\end{figure}
-
-\begin{figure}[h]
-\begin{center}
-\begin{math}
-	security score = \frac{(likelihood * consequence)^2}{vulnerability}
-\end{math}
-\caption{Score formula \cite{DBLP:conf/automotiveSS/JakobKSGMSF12}}
-\label{security_formula}
-\end{center}
-\end{figure}
 Further development will be to show the efficiency, robustness and usability.
 I think the approach can be very useful if the complexity of application does not destroy the usability in the future.\\
 
@@ -258,7 +216,7 @@ Another approach is described in \cite{DBLP:journals/esl/DardanelliMTZSKH13} whe
 \end{center}
 \end{figure}
 
-To realize this concept, keys are generated with nonce, and exchanged. After that, a long-term secret key is computed using a key-function. This steps are repeated for each authentication process. In the experiment the bottleneck was the execution time on the gateway ECU (see figure \ref{img_security_layer_bt}) resulting from low CPU power. The security layer lowered the Bluetooth frequency because of the calculation delays and the increased size of the messages (+40\%). The lower frequency in some degree compensates the time loss. The overall (closed-loop) performance is not affected. In future work they propose to use lightweight cryptographic algorithms for lower energy ECUs and requirements for secure A-ENV system engineering.
+To realize this concept, keys are generated with nonce, and exchanged. After that, a long-term secret key is computed using a key-function. This steps are repeated for each authentication process. In the experiment the bottleneck was the execution time on the gateway engine control unit (ECU) (see figure \ref{img_security_layer_bt}) resulting from low CPU power. The security layer lowered the Bluetooth frequency because of the calculation delays and the increased size of the messages (+40\%). The lower frequency in some degree compensates the time loss. The overall (closed-loop) performance is not affected. In future work they propose to use lightweight cryptographic algorithms for lower energy ECUs and requirements for secure A-ENV system engineering.
 
 \subsubsection{Low Energy (LE) vulnerabilities}
 The BT 4.0 LE release opened the opportunities for long lasting health care equipment and the internet of things (think of wearables). The paper \cite{DBLP:conf/greencom/XuZLMLCSTY13} examines vulnerabilities in the authentication and pairing process. The basic vulnerabilities stay the same as eavesdropping or DOS attacks are still a threat.
@@ -266,30 +224,17 @@ The BT 4.0 LE release opened the opportunities for long lasting health care equi
 In LE there still are modes and levels. The highest required level between endpoints is enforced for both. Pairing still provides no eavesdropping protection and key distribution is needed. An AES 128Bit encryption function provides the keys. The key can be compromised resulting in MITM attack on "Just Works" mode, leaking information and weak password vulnerability allows guessing attacks.
 
 The enhancements of previous versions can still be bypassed. Since mode level 1 has no authentication or encryption automatically paired devices (like headphones) don't provide any protection at all. A handshake (challenge response) process with some randomness could help here again. This problems are a result of rating convenience for the user higher than security.
-The paper is hard to read because there are not many full sentences and the meaning is often not clear.
 
-In \cite{DBLP:conf/woot/Ryan13} the authors introduce the Ubertooth platform and like in \cite{DBLP:conf/greencom/XuZLMLCSTY13} point out that the compromises that were made for convenience ease the task of creating an eavesdropping tool. Ubertooth is a USB dongle which can capture a single frequency (one at a time) converting the signal in a bitstream. This bitstream is processed on the dongle which provides possibilities of exact timing of actions. With this technique they built a sniffer following the frequency hopping of the targets. If it is possible, the values needed to hop with the targets can be derived directly from the initialization process or recovered from empty filler packages later. The recovery needs precise timing. The formulas used to calculate the next channel, the channels hopped and the hop interval can be seen in figure \ref{le_bt_formulas}. The time measure can be done listening to fixed channels (0 and 1) and calculate the time between two data packets sent.
+In \cite{DBLP:conf/woot/Ryan13} the authors introduce the Ubertooth platform and like in \cite{DBLP:conf/greencom/XuZLMLCSTY13} point out that the compromises that were made for convenience ease the task of creating an eavesdropping tool. Ubertooth is a USB dongle which can capture a single frequency (one at a time) converting the signal in a bitstream. This bitstream is processed on the dongle which provides possibilities of exact timing of actions. With this technique they built a sniffer following the frequency hopping of the targets. If it is possible, the values needed to hop with the targets can be derived directly from the initialization process or recovered from empty filler packages later. The recovery needs precise timing. The time measure can be done listening to fixed channels (0 and 1) and calculate the time between the sending of two data packets.
 
-\begin{figure}[h]
-\begin{center}
-	\begin{align*}
-		nextChannel = channel + hopIncrement\\
- 		hopInterval = \frac{\Delta t}{37 * 1.25ms} \\
- 		channelsHopped = \frac{\Delta t}{1.25ms * hopInterval}
-	\end{align*}
-\caption{Channel calculation and hop interval \cite{DBLP:conf/woot/Ryan13}}
-\label{le_bt_formulas}
-\end{center}
-\end{figure}
-
- The channelsHopped value has to be calculated a bit more complicated but is also feasible. They further describe the attack against the key exchange rather than the encryption (AES) itself. Even if the nonce is not known jamming the signal leads to a reconnect where the nonce can be sniffed. Additionally a trajectory for active and a MITM attack are proposed for future works.
+The channelsHopped value has to be calculated a bit more complicated but is also feasible. They further describe the attack against the key exchange rather than the encryption (AES) itself. Even if the nonce is not known jamming the signal leads to a reconnect where the nonce can be sniffed. Additionally a trajectory for active and a MITM attack are proposed for future works.
 The conclusion on BTLE passive sounds as followed:
 \begin{quote}
 	"We also demonstrate an attack against the key exchange protocol which renders the encryption useless against passive eavesdroppers. This eliminates any confidentially associated with the protocol."\cite{DBLP:conf/woot/Ryan13}
 \end{quote}
 which sounds not very nice for all the upcoming smartwatches transferring private data.
 
-The approach is very promising and holds much potential. The paper is well written and understandable.
+The approach is very promising and holds much potential.
 
 \subsection{Further development}
 Because the SIP charges no fee for BT 4.0 the increase of BT enabled devices will be steady. With more devices at home becoming part of the IoT the security issues may concern everyone in some years. The usage of standard keys or "Just Works" couplings should be avoided anyways. A combination of the attack described in \cite{DBLP:conf/woot/Ryan13} with the model-based risk testing from \cite{DBLP:conf/automotiveSS/JakobKSGMSF12} could help to make future versions of BTLE more secure.
